@@ -2,10 +2,10 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import TeamCards from "./TeamCards";
 
-import pp_leader from "../Assets/OK2.png";
-import pp_dev from "../Assets/Taiyo2.png";
-import pp_community from "../Assets/OK1.png";
-import pp_design from "../Assets/OK3.png";
+import pp_leader from "../Assets/team_lead.png";
+import pp_dev from "../Assets/team_front.png";
+import pp_community from "../Assets/team_com.png";
+import pp_design from "../Assets/team_design.png";
 
 function Team() {
   return (
