@@ -16,7 +16,7 @@ function Navigation() {
       <nav className="navbar navbar-expand ">
         <div className="container">
           <NavLink className="navbar-brand" to="/">
-            DEGEN BOUNTY KILLER
+            DEGEN BOUNTY HUNTER
           </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">
