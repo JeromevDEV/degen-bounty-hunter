@@ -68,7 +68,7 @@ function Navigation() {
                 <Nav.Item>
                   <Nav.Link
                       as={Link}
-                      to="/project"
+                      to="/roadmap"
                       onClick={() => updateExpanded(false)}
                   >
                     <AiOutlineFileUnknown
