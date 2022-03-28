@@ -80,6 +80,7 @@ html {
 }
 
 .navbar {
+    background-color: rgb(10, 4, 22) !important;
     transition: all 0.3s ease-out 0s !important;
     padding: 0.3rem 2rem !important;
     font-size: 18px !important;
