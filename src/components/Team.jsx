@@ -31,8 +31,8 @@ function Team() {
           <Col md={3} className="team-card">
             <TeamCards
               imgPath={pp_community}
-              title="Merry  - Community manager"
-              description="NFT Sol/Eth enjoyer - 24 yo. Started crypto since 1.5 years, I'm a Frenchy who eats cheese every morning - Here to give you a lot of information about the project and the progress in a good mood - Long live us, the Degen"
+              title="Ezode  - Community manager"
+              description="Passionate about Marketing and Data Science, I decided to mix the two to work in the field of Data Marketing at Oracle. As soon as I discovered the NFT world, I knew I wanted to evolve and work later in this incredible space. Last thing about me : Im a blackjack Degen and lost too much money at this game !"
             />
           </Col>
 
