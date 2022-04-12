@@ -14,7 +14,7 @@ function Footer() {
                     <h3>Designed and Developed by Degen Bounty Hunter</h3>
                 </Col>
                 <Col md="4" className="footer-copywright">
-                    <h3>Copyright © {year} DBK</h3>
+                    <h3>Copyright © {year} DBH</h3>
                 </Col>
                 <Col md="4" className="footer-body">
                     <ul className="footer-icons">
