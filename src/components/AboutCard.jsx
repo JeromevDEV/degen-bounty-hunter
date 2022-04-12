@@ -8,7 +8,7 @@ function AboutCard() {
             <Card.Body>
                 <blockquote className="blockquote mb-0">
                     <p style={{ textAlign: "justify" }}>
-                        Hi Everyone, we are <span className="purple">DEGEN BOUNTY KILLER </span>.
+                        Hi Everyone, we are <span className="purple">DEGEN BOUNTY HUNTER </span>.
                         <br />
                         <br />
                         Here are some information about our project :
