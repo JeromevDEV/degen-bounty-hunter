@@ -35,7 +35,7 @@ function Navigation() {
         >
           <Container>
             <Navbar.Brand href="/" className="d-flex">
-              <p style={{marginTop: "15px"}}>Degen Bounty Hunter</p>
+              <p style={{marginTop: "15px"}}><strong className="main-name"> D</strong>egen <strong className="main-name">B</strong>ounty <strong className="main-name">H</strong>unter</p>
             </Navbar.Brand>
             <Navbar.Toggle
                 aria-controls="responsive-navbar-nav"
