@@ -15,11 +15,7 @@ function Whitepaper() {
                     <h1 style={{paddingBottom: 15}} className="heading">
                         You asked for the <strong className="main-name"> White-paper </strong> ?
                     </h1>
-                    <Row>
-                        <Col md={12}>
-                            <YouTube videoId="0iYsBnj2BUk"/>
-                        </Col>
-                    </Row>
+                    <YouTube videoId="0iYsBnj2BUk"/>
                     <Row>
                         <Col md={12}>
                             <img src={wp_1} alt="roadmap pic" className="img-fluid" style={{maxWidth: '50%'}}/>
