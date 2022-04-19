@@ -12,6 +12,7 @@ import {
     AiOutlineFileUnknown,
     AiOutlineThunderbolt
 } from "react-icons/ai";
+import {Button} from "react-bootstrap";
 
 function Navigation() {
   const [expand, updateExpanded] = useState(false);
@@ -95,6 +96,7 @@ function Navigation() {
                       onClick={() => updateExpanded(false)}
                   >
                     <AiOutlineUser  style={{ marginBottom: "2px" }} /> About
+                    <Button onClick={() => alert("test")}>Add</Button>
                   </Nav.Link>
                 </Nav.Item>
               </Nav>
