@@ -16,7 +16,7 @@ function Whitepaper() {
                         You asked for the <strong className="main-name"> White-paper </strong> ?
                     </h1>
                     <Row>
-                        <YoutubeEmbed embedId="uqv-pDtKHSE" />
+                        <YoutubeEmbed embedId="rokGy0huYEA" />
                     </Row>
                     <Row>
                         <Col md={12}>
