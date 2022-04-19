@@ -16,11 +16,16 @@ function Whitepaper() {
                     </h1>
 
                     {/*<Video isPaused={isPaused} />*/}
-                    <iframe
-                        width="420"
-                        height="315"
-                        src="https://www.youtube.com/embed/tgbNymZ7vqY"
-                    />
+                    <div>
+                        <iframe
+                            src="https://www.youtube.com/embed/E7wJTI-1dvQ"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media"
+                            allowFullScreen
+                            title="video"
+                        />
+                        {" "}
+                    </div>
 
                     <Row>
                         <Col md={12}>
