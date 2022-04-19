@@ -5,6 +5,7 @@ import wp_2 from "../Assets/wp_2.png";
 import wp_3 from "../Assets/wp_3.png";
 import wp_4 from "../Assets/wp_4.png";
 import wp_5 from "../Assets/wp_5.png";
+import YouTube from "react-youtube";
 
 function Whitepaper() {
     return (
@@ -14,6 +15,9 @@ function Whitepaper() {
                     <h1 style={{paddingBottom: 15}} className="heading">
                         You asked for the <strong className="main-name"> White-paper </strong> ?
                     </h1>
+                    <Row>
+                        <YouTube videoId="uqv-pDtKHSE"/>
+                    </Row>
                     <Row>
                         <Col md={12}>
                             <img src={wp_1} alt="roadmap pic" className="img-fluid" style={{maxWidth: '50%'}}/>

@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { ImPointRight } from "react-icons/im";
-import YouTube from "react-youtube";
 
 function AboutCard() {
     return (
@@ -14,7 +13,6 @@ function AboutCard() {
                         <br />
                         Here are some information about our project :
                     </p>
-                    <YouTube videoId="uqv-pDtKHSE"/>
                     <ul>
                         <li className="about-activity">
                             <ImPointRight /> Supply: 3333
