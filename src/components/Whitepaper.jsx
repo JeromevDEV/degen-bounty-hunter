@@ -61,7 +61,12 @@ function Whitepaper() {
                         You asked for the <strong className="main-name"> White-paper </strong> ?
                     </h1>
 
-                    <Video isPaused={isPaused} />
+                    {/*<Video isPaused={isPaused} />*/}
+                    <iframe
+                        width="420"
+                        height="315"
+                        src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                    />
 
                     <Row>
                         <Col md={12}>
