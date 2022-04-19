@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import YouTube from 'react-youtube';
 import home1 from "../Assets/home_1.png";
 import home2 from "../Assets/home_2.png";
 
@@ -18,6 +19,7 @@ function Home() {
 
                             <div style={{ padding: 50, textAlign: "left" }}>
                                 <Type />
+                                <YouTube videoId="uqv-pDtKHSE"/>
                             </div>
                         </Col>
 

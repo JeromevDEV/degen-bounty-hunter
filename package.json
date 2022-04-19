@@ -15,6 +15,7 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "^5.0.0",
     "react-video-js-player": "^1.1.1",
+    "react-youtube": "^8.2.1",
     "typewriter-effect": "^2.18.2"
   },
   "scripts": {
