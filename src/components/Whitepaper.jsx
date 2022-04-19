@@ -5,7 +5,7 @@ import wp_2 from "../Assets/wp_2.png";
 import wp_3 from "../Assets/wp_3.png";
 import wp_4 from "../Assets/wp_4.png";
 import wp_5 from "../Assets/wp_5.png";
-import YouTube from "react-youtube";
+import ReactPlayer from "react-player";
 
 function Whitepaper() {
     return (
@@ -16,7 +16,7 @@ function Whitepaper() {
                         You asked for the <strong className="main-name"> White-paper </strong> ?
                     </h1>
                     <Row>
-                        <YouTube videoId="uqv-pDtKHSE"/>
+                        <ReactPlayer url='https://www.youtube.com/watch?v=uqv-pDtKHSE' />
                     </Row>
                     <Row>
                         <Col md={12}>
