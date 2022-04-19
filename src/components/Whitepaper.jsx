@@ -7,6 +7,8 @@ import wp_4 from "../Assets/wp_4.png";
 import wp_5 from "../Assets/wp_5.png";
 import YouTube from 'react-youtube';
 
+const opts = { height: "390", width: "640", playerVars: { // https://developers.google.com/youtube/player_parameters autoplay: 1, mute: 1 } };
+
 function Whitepaper() {
     return (
         <section>
@@ -15,7 +17,7 @@ function Whitepaper() {
                     <h1 style={{paddingBottom: 15}} className="heading">
                         You asked for the <strong className="main-name"> White-paper </strong> ?
                     </h1>
-                    <YouTube videoId="0iYsBnj2BUk"/>
+                    <YouTube videoId="0iYsBnj2BUk" opts={opts}/>
                     <Row>
                         <Col md={12}>
                             <img src={wp_1} alt="roadmap pic" className="img-fluid" style={{maxWidth: '50%'}}/>
