@@ -7,11 +7,6 @@ import wp_4 from "../Assets/wp_4.png";
 import wp_5 from "../Assets/wp_5.png";
 
 function Whitepaper() {
-
-    function sayHello() {
-        alert("test")
-    }
-
     return (<section>
             <Container fluid className="whitepaper-section" id="whitepaper">
                 <Container className="whitepaper-content">
@@ -21,7 +16,7 @@ function Whitepaper() {
 
                     {/*<Video isPaused={isPaused} />*/}
                     <div>
-                        <button onClick={sayHello}>Default</button>;
+                        <Button onClick={() => alert("test")}>Add</Button>
                         <iframe
                             src="https://www.youtube.com/embed/E7wJTI-1dvQ"
                             frameBorder="0"
