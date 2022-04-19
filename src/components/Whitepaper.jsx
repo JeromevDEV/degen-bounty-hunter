@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 import wp_1 from "../Assets/wp_1.png";
 import wp_2 from "../Assets/wp_2.png";
 import wp_3 from "../Assets/wp_3.png";
@@ -8,14 +8,22 @@ import wp_5 from "../Assets/wp_5.png";
 import YouTube from 'react-youtube';
 
 function Whitepaper() {
-    return (
-        <section>
+    return (<section>
             <Container fluid className="whitepaper-section" id="whitepaper">
                 <Container className="whitepaper-content">
                     <h1 style={{paddingBottom: 15}} className="heading">
                         You asked for the <strong className="main-name"> White-paper </strong> ?
                     </h1>
-                    <YouTube videoId="0iYsBnj2BUk"/>
+                    <YouTube
+                        videoId="KXw8CRapg7k"
+                        className="Video"
+                        opts={{
+                            playerVars: {
+                                // https://developers.google.com/youtube/player_parameters
+                                autoplay: 1
+                            }
+                        }}
+                    />
                     <Row>
                         <Col md={12}>
                             <img src={wp_1} alt="roadmap pic" className="img-fluid" style={{maxWidth: '50%'}}/>
@@ -44,8 +52,7 @@ function Whitepaper() {
 
                 </Container>
             </Container>
-        </section>
-    );
+        </section>);
 }
 
 export default Whitepaper;
