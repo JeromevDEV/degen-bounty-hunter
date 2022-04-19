@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {Container, Row, Col, Button} from "react-bootstrap";
+import React from "react";
+import {Container, Row, Col} from "react-bootstrap";
 import wp_1 from "../Assets/wp_1.png";
 import wp_2 from "../Assets/wp_2.png";
 import wp_3 from "../Assets/wp_3.png";
@@ -16,7 +16,7 @@ function Whitepaper() {
 
                     {/*<Video isPaused={isPaused} />*/}
                     <div>
-                        <Button onClick={() => alert("test")}>Add</Button>
+                        <button onClick={() => alert("test")}>Add</button>
                         <iframe
                             src="https://www.youtube.com/embed/E7wJTI-1dvQ"
                             frameBorder="0"
