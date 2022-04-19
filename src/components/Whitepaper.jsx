@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import {Container, Row, Col} from "react-bootstrap";
 import wp_1 from "../Assets/wp_1.png";
 import wp_2 from "../Assets/wp_2.png";
