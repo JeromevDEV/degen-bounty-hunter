@@ -96,7 +96,6 @@ function Navigation() {
                       onClick={() => updateExpanded(false)}
                   >
                     <AiOutlineUser  style={{ marginBottom: "2px" }} /> About
-                    <Button onClick={() => alert("test")}>Add</Button>
                   </Nav.Link>
                 </Nav.Item>
               </Nav>
