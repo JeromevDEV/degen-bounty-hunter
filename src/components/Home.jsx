@@ -15,6 +15,8 @@ function Home() {
                             <h1 style={{ paddingBottom: 15 }} className="heading">
                                 Hi <strong className="main-name"> Degen bounty hunter </strong><span className="wave" role="img" aria-labelledby="wave">👋🏻</span>
                             </h1>
+                            <button onClick={() => alert("test")}>Add</button>
+
 
                             <div style={{ padding: 50, textAlign: "left" }}>
                                 <Type />
