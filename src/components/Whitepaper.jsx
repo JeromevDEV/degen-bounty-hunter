@@ -15,7 +15,6 @@ function Whitepaper() {
                         You asked for the <strong className="main-name"> White-paper </strong> ?
                     </h1>
 
-                    <YoutubePlayer/>
 
                     <Row>
                         <Col md={12}>
