@@ -5,6 +5,7 @@ import wp_2 from "../Assets/wp_2.png";
 import wp_3 from "../Assets/wp_3.png";
 import wp_4 from "../Assets/wp_4.png";
 import wp_5 from "../Assets/wp_5.png";
+import YoutubePlayer from "./YoutubePlayer";
 
 function Whitepaper() {
     return (<section>
@@ -14,18 +15,7 @@ function Whitepaper() {
                         You asked for the <strong className="main-name"> White-paper </strong> ?
                     </h1>
 
-                    {/*<Video isPaused={isPaused} />*/}
-                    <div>
-                        <button onClick={() => alert("test")}>Add</button>
-                        <iframe
-                            src="https://www.youtube.com/embed/E7wJTI-1dvQ"
-                            frameBorder="0"
-                            allow="autoplay; encrypted-media"
-                            allowFullScreen
-                            title="video"
-                        />
-                        {" "}
-                    </div>
+                    <YoutubePlayer/>
 
                     <Row>
                         <Col md={12}>
