@@ -10,6 +10,7 @@ function TeamCards(props) {
         <Card.Text style={{ textAlign: "justify" }}>
           {props.description}
         </Card.Text>
+          <button onClick={() => alert("test")}>Add</button>
       </Card.Body>
     </Card>
   );
