@@ -4,15 +4,10 @@ import React from "react";
 function YoutubePlayer() {
     return (
         <div>
-            <iframe
-                src="https://www.youtube.com/watch?v=uqv-pDtKHSE&ab_channel=DegenBountyHunterE"
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                title="video"
-                width="100%"
-                height="100%"
-            />
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/uqv-pDtKHSE"
+    title="YouTube video player" frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen/>
         </div>
     );
 }
