@@ -5,7 +5,7 @@ function YoutubePlayer() {
     return (
         <div>
             <iframe
-                src="https://youtu.be/uqv-pDtKHSE"
+                src="http://www.youtube.com/watch?v=uqv-pDtKHSE&ab_channel=DegenBountyHunterE"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
