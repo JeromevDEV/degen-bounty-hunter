@@ -4,13 +4,14 @@ import React from "react";
 function YoutubePlayer() {
     return (
         <div>
-            <button onClick={() => alert("test")}>Add</button>
             <iframe
-                src="https://www.youtube.com/embed/E7wJTI-1dvQ"
+                src="https://www.youtube.com/watch?v=uqv-pDtKHSE"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
                 allowFullScreen
                 title="video"
+                width="100%"
+                height="100%"
             />
         </div>
     );
