@@ -8,13 +8,14 @@ import wp_5 from "../Assets/wp_5.png";
 import YoutubePlayer from "./YoutubePlayer";
 
 function Whitepaper() {
-    return (<section>
+    return (
             <Container fluid className="whitepaper-section" id="whitepaper">
                 <Container className="whitepaper-content">
                     <h1 style={{paddingBottom: 15}} className="heading">
                         You asked for the <strong className="main-name"> White-paper </strong> ?
                     </h1>
 
+                    <YoutubePlayer/>
 
                     <Row>
                         <Col md={12}>
@@ -44,7 +45,7 @@ function Whitepaper() {
 
                 </Container>
             </Container>
-        </section>);
+);
 }
 
 export default Whitepaper;

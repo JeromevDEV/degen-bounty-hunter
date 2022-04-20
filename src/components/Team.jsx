@@ -6,13 +6,11 @@ import pp_leader from "../Assets/team_lead.png";
 import pp_dev from "../Assets/team_front.png";
 import pp_community from "../Assets/team_com.png";
 import pp_design from "../Assets/team_design.png";
-import YoutubePlayer from "./YoutubePlayer";
 
 function Team() {
   return (
     <Container fluid className="team-section">
       <Container>
-        <YoutubePlayer/>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={3} className="team-card">
             <TeamCards
