@@ -4,8 +4,8 @@ import YouTube from 'react-youtube';
 
 function YoutubePlayer() {
     return (
-        <div>
-            <YouTube videoId="uqv-pDtKHSE"/>;
+        <div className="containerYtb">
+            <iframe className="responsive-iframe" src="https://www.youtube.com/embed/uqv-pDtKHSE"/>
         </div>
 
     );
