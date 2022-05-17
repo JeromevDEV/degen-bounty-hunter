@@ -290,6 +290,40 @@ html {
 }
 
 /* --------- */
+/* Gen0 section */
+/* --------- */
+.genzero-header {
+    padding-top: 80px !important;
+}
+
+.genzero-section {
+    position: relative;
+    z-index: 1;
+    /* background-image: var(--image-gradient), url(Assets/home-bg.jpg); */
+    background-position: top center;
+    background-repeat: no-repeat;
+    padding-bottom: 30px !important;
+    padding-top: 30px !important;
+}
+
+.genzero-content {
+    padding: 9rem 0 2rem !important;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.genzero-description {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 1.3em;
+    margin-bottom: 100px;
+}
+
+.genzero-section .heading{
+    margin-bottom: 100px !important;
+}
+
+/* --------- */
 /* Team */
 /* --------- */
 .team-section {

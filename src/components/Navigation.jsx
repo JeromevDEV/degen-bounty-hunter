@@ -4,7 +4,6 @@ import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 
-import {NavLink} from "react-router-dom";
 import {
     AiOutlineHome,
     AiOutlineUser,
@@ -12,7 +11,6 @@ import {
     AiOutlineFileUnknown,
     AiOutlineThunderbolt
 } from "react-icons/ai";
-import {Button} from "react-bootstrap";
 
 function Navigation() {
   const [expand, updateExpanded] = useState(false);
@@ -86,6 +84,16 @@ function Navigation() {
                       onClick={() => updateExpanded(false)}
                   >
                     <AiOutlineBook  style={{ marginBottom: "2px" }} /> White paper
+                  </Nav.Link>
+                </Nav.Item>
+
+                <Nav.Item>
+                  <Nav.Link
+                      as={Link}
+                      to="/genZero"
+                      onClick={() => updateExpanded(false)}
+                  >
+                    <AiOutlineThunderbolt  style={{ marginBottom: "2px" }} /> Gen<strong className="main-name">0</strong>
                   </Nav.Link>
                 </Nav.Item>
 
