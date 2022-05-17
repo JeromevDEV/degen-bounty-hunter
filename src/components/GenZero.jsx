@@ -4,6 +4,7 @@ import gen0_advantage from "../Assets/gen0_advantages.png";
 import me_logo from "../Assets/me_logo.png"
 import solanart_logo from "../Assets/solanart_logo.png"
 import solsea_logo from "../Assets/solsea_logo.png"
+import opensea_logo from "../Assets/opensea_logo.png"
 
 function GenZero() {
     return (
@@ -20,8 +21,9 @@ function GenZero() {
 
                     <h4>Official links for <strong className="main-name"> Gen0 </strong></h4>
                     <p style={{fontSize:18}}><a className="genzero-link" href="https://magiceden.io/marketplace/degenbountyhunter">Magic Eden<img src={me_logo} style={{maxWidth:"40px", maxHeight:"40px"}}alt="Magic Eden logo"/></a></p>
-                    <p style={{fontSize:18}}><a href="https://solanart.io/collections/degenhuntersol?tab=items">Solanart<img src={solanart_logo} style={{maxWidth:"40px", maxHeight:"40px"}}alt="Magic Eden logo"/></a></p>
-                    <p style={{fontSize:18, marginBottom:'50px'}}><a href="https://solsea.io/collection/628262eba48f88b2cbaed6f1">SolSea<img src={solsea_logo} style={{maxWidth:"40px", maxHeight:"40px"}}alt="Magic Eden logo"/></a></p>
+                    <p style={{fontSize:18}}><a href="https://solanart.io/collections/degenhuntersol?tab=items">Solanart<img src={solanart_logo} style={{maxWidth:"40px", maxHeight:"40px"}}alt="Solanart logo"/></a></p>
+                    <p style={{fontSize:18}}><a href="https://opensea.io/collection/degen-bounty-hunter-solana">OpenSea<img src={opensea_logo} style={{maxWidth:"40px", maxHeight:"40px"}}alt="OpenSea logo"/></a></p>
+                    <p style={{fontSize:18, marginBottom:'50px'}}><a href="https://solsea.io/collection/628262eba48f88b2cbaed6f1">SolSea<img src={solsea_logo} style={{maxWidth:"40px", maxHeight:"40px"}}alt="Solsea logo"/></a></p>
 
                     <img src={gen0_advantage} alt="Gen0 advantages" className="img-fluid" style={{maxWidth: '75%'}}/>
                 </Container>
