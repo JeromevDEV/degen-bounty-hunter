@@ -11,8 +11,8 @@ function Claim() {
                     You did a good job hunter... now it's time to retire <span className="roadmap" role="img"
                                                                                aria-labelledby="roadmap">💰</span>
                 </h1>
-                <ClaimableNFT/>
-                <p>please</p>
+                {/*<ClaimableNFT/>*/}
+                <p>WIP</p>
             </Container>
         </Container>
         </section>
