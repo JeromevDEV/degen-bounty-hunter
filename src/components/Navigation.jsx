@@ -9,7 +9,8 @@ import {
     AiOutlineUser,
     AiOutlineBook,
     AiOutlineFileUnknown,
-    AiOutlineThunderbolt
+    AiOutlineThunderbolt,
+  AiOutlineDollarCircle
 } from "react-icons/ai";
 
 function Navigation() {
@@ -32,8 +33,8 @@ function Navigation() {
             expand="md"
             className={navColour ? "sticky" : "navbar"}
         >
-          <Container>
-            <Navbar.Brand href="/" className="d-flex">
+          <Container fluid className="containerNavBar">
+          <Navbar.Brand href="/" className="d-flex">
               <p style={{marginTop: "15px"}}><strong className="main-name"> D</strong>egen <strong className="main-name">B</strong>ounty <strong className="main-name">H</strong>unter</p>
             </Navbar.Brand>
             <Navbar.Toggle
@@ -104,6 +105,16 @@ function Navigation() {
                       onClick={() => updateExpanded(false)}
                   >
                     <AiOutlineUser  style={{ marginBottom: "2px" }} /> About
+                  </Nav.Link>
+                </Nav.Item>
+
+                <Nav.Item>
+                  <Nav.Link
+                      as={Link}
+                      to="/claim"
+                      onClick={() => updateExpanded(false)}
+                  >
+                    <AiOutlineDollarCircle  style={{ marginBottom: "2px" }} /> Claim
                   </Nav.Link>
                 </Nav.Item>
               </Nav>

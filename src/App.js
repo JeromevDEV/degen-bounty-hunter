@@ -40,6 +40,7 @@ function App() {
                     <Route path="/roadmap" element={<Roadmap/>}/>
                     <Route path="/whitepaper" element={<Whitepaper/>}/>
                     <Route path="/genZero" element={<GenZero/>}/>
+                    <Route path="/claim" element={<claim/>}/>
                 </Routes>
                 <Footer/>
             </div>
