@@ -10,6 +10,7 @@ import {
     Whitepaper,
 } from "./components";
 import GenZero from "./components/GenZero"
+import Claim from "./components/Claim"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import "./style.css";
 import "./App.css";
@@ -40,7 +41,7 @@ function App() {
                     <Route path="/roadmap" element={<Roadmap/>}/>
                     <Route path="/whitepaper" element={<Whitepaper/>}/>
                     <Route path="/genZero" element={<GenZero/>}/>
-                    <Route path="/claim" element={<claim/>}/>
+                    <Route path="/claim" element={<Claim/>}/>
                 </Routes>
                 <Footer/>
             </div>

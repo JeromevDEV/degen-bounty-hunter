@@ -12,7 +12,7 @@ function Claim() {
                                                                                aria-labelledby="roadmap">💰</span>
                 </h1>
                 <ClaimableNFT/>
-
+                <p>please</p>
             </Container>
         </Container>
         </section>

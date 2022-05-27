@@ -12,6 +12,7 @@ import {
     AiOutlineThunderbolt,
   AiOutlineDollarCircle
 } from "react-icons/ai";
+import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
 
 function Navigation() {
   const [expand, updateExpanded] = useState(false);
@@ -117,6 +118,13 @@ function Navigation() {
                     <AiOutlineDollarCircle  style={{ marginBottom: "2px" }} /> Claim
                   </Nav.Link>
                 </Nav.Item>
+
+{/*                <Nav.Item>
+                  <Nav.Link>
+                    <WalletMultiButton />
+                  </Nav.Link>
+                </Nav.Item>*/}
+
               </Nav>
             </Navbar.Collapse>
           </Container>
