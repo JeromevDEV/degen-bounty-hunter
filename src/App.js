@@ -14,8 +14,8 @@ import Claim from "./components/Claim"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import "./style.css";
 import "./App.css";
-
 import ScrollToTop from "./components/ScrollToTop";
+
 
 function App() {
     const [load, upadateLoad] = useState(true);
