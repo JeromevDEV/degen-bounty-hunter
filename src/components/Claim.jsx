@@ -7,9 +7,10 @@ import { Container } from "react-bootstrap";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { programs, Connection } from "@metaplex/js";
 import axios from "axios";
+import {claimReward} from "../contexts/transactions"
 
 function Claim() {
-  const { publicKey } = useWallet();
+  const { publicKey,signTransaction } = useWallet();
   const [arr, setArr] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
   const [loading, setLoading] = useState(true);
   const [NFTs, setNFTs] = useState([]);
@@ -28,6 +29,15 @@ function Claim() {
     }
     return 0;
   };
+
+  const handleClaim = async () => {
+    let mintId = "HyomvqtLBjHhPty1P6dKzNf5gNow9qbfGkxj69pqBD8Z";
+    try {
+      await claimReward(publicKey, mintId);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     (async function () {
@@ -81,6 +91,7 @@ function Claim() {
                 <h1 className="team-heading">No NFTs found</h1>
               )}
               {NFTs.map((nft) => {
+                console.log(nft);
                 return (
                   <div className="card" key={nft.explorer_url}>
                     <img
@@ -94,7 +105,7 @@ function Claim() {
                       Bounty: {search("Bounty", nft.off_chain_data.attributes)}
                     </h5>
                     <div>
-                      <button className="btn-primary">Claim</button>
+                      <button className="btn-primary" onClick={() => handleClaim()}>Claim</button>
                     </div>
                   </div>
                 );
