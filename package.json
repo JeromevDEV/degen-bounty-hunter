@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@metaplex-foundation/mpl-token-metadata": "^2.1.2",
+    "@metaplex/js": "^4.12.0",
     "@project-serum/sol-wallet-adapter": "^0.2.6",
     "@solana/wallet-adapter-base": "^0.9.5",
     "@solana/wallet-adapter-react": "^0.15.5",
@@ -12,8 +14,11 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.27.2",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.1.1",
     "history": "^5.1.0",
-    "react": "^17.0.1",
+    "react": "^17.0.2",
     "react-bootstrap": "^2.2.0",
     "react-dom": "^17.0.1",
     "react-hot-toast": "^2.2.0",
@@ -24,6 +29,8 @@
     "react-scripts": "^5.0.0",
     "react-video-js-player": "^1.1.1",
     "react-youtube": "^8.2.1",
+    "solana-nft-metadata": "^1.0.7",
+    "stream": "^0.0.2",
     "typewriter-effect": "^2.18.2"
   },
   "scripts": {
