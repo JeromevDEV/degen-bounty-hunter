@@ -47,7 +47,7 @@ function Claim() {
         
         setLoading(true);
 
-        const connection = new Connection("https://api.mainnet-beta.solana.com");
+        const connection = new Connection("https://api.mainnet-beta.solana.com","processed");
 
         const accounts = await connection.getParsedProgramAccounts(
           TOKEN_PROGRAM_ID, // new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
@@ -73,7 +73,6 @@ function Claim() {
         accounts.map(async (nft)=>{
 
           setLoading(true);
-
           if (nft.account.data.parsed.info.tokenAmount.amount == "1" && nft.account.data.parsed.info.tokenAmount.decimals == 0){
 
             let metaAccount = await PublicKey.findProgramAddress([Buffer.from('metadata'), Metadata.PROGRAM_ID.toBytes(), new PublicKey(nft.account.data.parsed.info.mint).toBytes()], Metadata.PROGRAM_ID);
