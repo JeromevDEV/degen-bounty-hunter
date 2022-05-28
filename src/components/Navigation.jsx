@@ -138,7 +138,7 @@ function Navigation() {
                     phantom_connect();
                   }}
                 > */}
-                <WalletMultiButton />
+                <WalletMultiButton/>
                 {/* </button> */}
               </Nav.Link>
             </Nav.Item>

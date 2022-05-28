@@ -5,21 +5,22 @@ import { Container } from "react-bootstrap";
 // import { Metadata } from "@metaplex-foundation/mpl-token-metadata";
 // import { Connection } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { programs, Connection } from "@metaplex/js";
 import axios from "axios";
 import {claimReward} from "../contexts/transactions"
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { Connection, PublicKey } from "@solana/web3.js";
+const Metadata = require("@metaplex-foundation/mpl-token-metadata");
+
 
 function Claim() {
-  const { publicKey,signTransaction } = useWallet();
+  const wallet = useWallet();
+  const {publicKey} = useWallet();
   const [arr, setArr] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
   const [loading, setLoading] = useState(true);
   const [NFTs, setNFTs] = useState([]);
   const API_KEY = "nxhv0sPzGRpNAkM";
   const API_SECRET = "BwQZsaoHmXGOGt3";
   const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
-  let {
-    metadata: { Metadata, UpdateMetadata, MetadataDataData, Creator },
-  } = programs;
 
   const search = (nameKey, myArray) => {
     for (var i = 0; i < myArray.length; i++) {
@@ -30,10 +31,9 @@ function Claim() {
     return 0;
   };
 
-  const handleClaim = async () => {
-    let mintId = "HyomvqtLBjHhPty1P6dKzNf5gNow9qbfGkxj69pqBD8Z";
+  const handleClaim = async (mint) => {
     try {
-      await claimReward(publicKey, mintId);
+      await claimReward(wallet,mint);
     } catch (error) {
       console.log(error);
     }
@@ -43,35 +43,80 @@ function Claim() {
     (async function () {
       setLoading(true);
       if (publicKey) {
-        // const connection = new Connection("mainnet-beta");
-        // const nftsmetadata = await Metadata.findDataByOwner(
-        //   connection,
-        //   publicKey.toBase58()
-        // );
+        
+        const connection = new Connection("https://api.mainnet-beta.solana.com");
 
-        // console.log("hi");
-        // console.log(nftsmetadata);
-        // return;
-        const HEADERS = {
-          APIKeyID: API_KEY,
-          APISecretKey: API_SECRET,
-        };
-        const PARAMS = {
-          public_key: publicKey.toBase58(),
-          network: "mainnet-beta",
-        };
-        let res = await axios.get(
-          "https://api.theblockchainapi.com/v1/solana/wallet/nfts",
+        const accounts = await connection.getParsedProgramAccounts(
+          TOKEN_PROGRAM_ID, // new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
           {
-            headers: HEADERS,
-            params: PARAMS,
+            filters: [
+              {
+                dataSize: 165, // number of bytes
+              },
+              {
+                memcmp: {
+                  offset: 32, // number of bytes
+                  bytes: publicKey, // base58 encoded string
+                },
+              },
+            ],
           }
         );
-        setNFTs(
-          res.data.nfts_metadata.filter((metadata) => {
-            return metadata.update_authority === UPDATE_AUTHORITY;
-          })
-        );
+
+        let validNfts = [];
+
+        accounts.map(async (nft)=>{
+
+          if (nft.account.data.parsed.info.tokenAmount.amount == "1" && nft.account.data.parsed.info.tokenAmount.decimals == 0){
+
+            let metaAccount = await PublicKey.findProgramAddress([Buffer.from('metadata'), Metadata.PROGRAM_ID.toBytes(), new PublicKey(nft.account.data.parsed.info.mint).toBytes()], Metadata.PROGRAM_ID);
+
+            let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
+
+            if (metadata.updateAuthority == UPDATE_AUTHORITY){
+
+              let res = await axios.get(metadata.data.uri);
+
+              validNfts.push(res);
+
+              setNFTs(validNfts);
+
+            }
+
+          }
+
+
+        });
+
+
+        
+        // const HEADERS = {
+        //   APIKeyID: API_KEY,
+        //   APISecretKey: API_SECRET,
+        // };
+        // const PARAMS = {
+        //   public_key: publicKey.toBase58(),
+        //   network: "mainnet-beta",
+        // };
+
+        // console.log("gjg")
+
+        // let res = await axios.get(
+        //   "https://api.theblockchainapi.com/v1/solana/wallet/nfts",
+        //   {
+        //     headers: HEADERS,
+        //     params: PARAMS,
+        //   }
+        // );
+
+        // console.log(res)
+
+        // setNFTs(
+        //   res.data.nfts_metadata.filter((metadata) => {
+        //     return metadata.update_authority === UPDATE_AUTHORITY;
+        //   })
+        // );
+
         setLoading(false);
       }
     })();
@@ -91,21 +136,20 @@ function Claim() {
                 <h1 className="team-heading">No NFTs found</h1>
               )}
               {NFTs.map((nft) => {
-                console.log(nft);
                 return (
-                  <div className="card" key={nft.explorer_url}>
+                  <div className="card" key={nft.data.name}>
                     <img
-                      src={nft.off_chain_data.image}
+                      src={nft.data.image}
                       //   src="https://static01.nyt.com/images/2021/03/12/arts/11nft-auction-cryptopunks-print/11nft-auction-cryptopunks-print-mobileMasterAt3x.jpg"
                       alt={nft.data.name}
                       width="200"
                     />
                     <h5>{nft.data.name}</h5>
                     <h5>
-                      Bounty: {search("Bounty", nft.off_chain_data.attributes)}
+                      Bounty: {search("Bounty",nft.data.attributes)}
                     </h5>
                     <div>
-                      <button className="btn-primary" onClick={() => handleClaim()}>Claim</button>
+                      <button className="btn-primary" onClick={() => handleClaim(nft.mint)}>Claim</button>
                     </div>
                   </div>
                 );

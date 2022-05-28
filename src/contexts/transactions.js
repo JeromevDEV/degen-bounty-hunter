@@ -14,18 +14,21 @@ import {
 import { TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID} from "@solana/spl-token";
 import axios from 'axios';
 import { Metadata } from "@metaplex-foundation/mpl-token-metadata";
+import { useWallet } from '@solana/wallet-adapter-react';
 
 // const connection = new Connection("devnet");
-const solConnection = new web3.Connection(web3.clusterApiUrl("devnet"), "processed");
+const solConnection = new web3.Connection(web3.clusterApiUrl("mainnet-beta"), "processed");
 
 export const claimReward = async (wallet,mintId)=>{
 
-    axios.post("http://localhost:3000/api/claimReward", {
-        wallet: wallet.toBase58(),
+    console.log(wallet.publicKey.toBase58())
+    console.log(mintId)
+
+    await axios.post("https://dbh-claim-reward.vercel.app/api/claimReward", {
+        wallet: wallet.publicKey.toBase58(),
         mintId,
     })
         .then(async (response) => {
-            console.log(response.data);
 
             let recoveredTransaction = Transaction.from(Buffer.from(response.data, 'base64'));
             console.log(recoveredTransaction);

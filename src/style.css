@@ -87,7 +87,7 @@ html {
   width: 100% !important;
 }
 .containerNavBar {
-  margin-left: 150px;
+  margin-left: 0px;
 }
 
 .navbar-toggler {
@@ -132,6 +132,12 @@ html {
   height: 12px !important;
   visibility: hidden !important;
   background-color: transparent !important;
+}
+
+.wallet-adapter-button{
+
+  white-space: nowrap !important;
+
 }
 
 .navbar-toggler:not(.collapsed) span:nth-child(3) {
