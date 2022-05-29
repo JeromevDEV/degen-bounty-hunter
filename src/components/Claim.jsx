@@ -41,8 +41,6 @@ function Claim() {
         (async function () {
 
             if (publicKey) {
-                console.log(publicKey)
-
                 setLoading(true);
 
                 const connection = new Connection("https://api.mainnet-beta.solana.com", "processed");
@@ -122,7 +120,6 @@ function Claim() {
                             {NFTs.length === 0 && (
                                 <h3 className="team-heading">No NFTs found</h3>
                             )}
-                            {console.log(NFTs.length)}
                             {NFTs.map((nft, key) => {
                                 return (
                                     <div className="card" key={key}>
