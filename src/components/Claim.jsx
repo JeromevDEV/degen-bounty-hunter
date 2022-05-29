@@ -22,6 +22,7 @@ function Claim() {
   const API_KEY = "nxhv0sPzGRpNAkM";
   const API_SECRET = "BwQZsaoHmXGOGt3";
   const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
+  const MINT_AUTHORITY = "756ypHgKk3gfonCJ68Sp91enMRXsyK4yQwwQkF3EUwkb";
 
   const search = (nameKey, myArray) => {
     for (var i = 0; i < myArray.length; i++) {
@@ -44,7 +45,7 @@ function Claim() {
     (async function () {
 
       if (publicKey) {
-        
+
         setLoading(true);
 
         const connection = new Connection("https://api.mainnet-beta.solana.com","processed");
@@ -79,7 +80,7 @@ function Claim() {
 
             let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
 
-            if (metadata.updateAuthority == UPDATE_AUTHORITY){
+            if (metadata.updateAuthority === UPDATE_AUTHORITY && metadata.mintAuthority === MINT_AUTHORITY){
 
               let res = await axios.get(metadata.data.uri);
 
@@ -100,7 +101,7 @@ function Claim() {
 
 
         setLoading(false);
-        
+
       }
     })();
   }, [publicKey]);
