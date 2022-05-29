@@ -41,6 +41,7 @@ function Claim() {
         (async function () {
 
             if (publicKey) {
+                console.log(publicKey)
 
                 setLoading(true);
 
@@ -114,12 +115,12 @@ function Claim() {
                 <Container style={{marginTop:"20px"}}>
                     {loading ? (
                         <div>
-                            <h1>Loading NFTs ...</h1>
+                            <h3>Loading NFTs ...</h3>
                         </div>
                     ) : publicKey ? (
                         <div className="cards">
                             {NFTs.length === 0 && (
-                                <h1 className="team-heading">No NFTs found</h1>
+                                <h3 className="team-heading">No NFTs found</h3>
                             )}
                             {console.log(NFTs.length)}
                             {NFTs.map((nft, key) => {
@@ -145,7 +146,7 @@ function Claim() {
                             })}
                         </div>
                     ) : (
-                        <h1>User not connected</h1>
+                        <h3>User not connected</h3>
                     )}
                 </Container>
             </Container>
