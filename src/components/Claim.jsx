@@ -133,12 +133,12 @@ function Claim() {
                 <Container style={{marginTop:"20px"}}>
                     {loading ? (
                         <div>
-                            <h1>Loading NFTs ...</h1>
+                            <h2>Loading NFTs ...</h2>
                         </div>
                     ) : publicKey ? (
                         <div className="cards">
                             {NFTs.length === 0 && (
-                                <h1 className="team-heading">No NFTs found</h1>
+                                <h2 className="team-heading">No NFTs found</h2>
                             )}
                             {NFTs.map((nft) => {
                                 return (
@@ -160,7 +160,7 @@ function Claim() {
                             })}
                         </div>
                     ) : (
-                        <h1>User not connected</h1>
+                        <h2>User not connected</h2>
                     )}
                 </Container>
             </Container>
