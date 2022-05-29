@@ -5,7 +5,6 @@ import Container from "react-bootstrap/Container";
 import { Link } from "react-router-dom";
 import {
   WalletMultiButton,
-  WalletModalButton,
 } from "@solana/wallet-adapter-react-ui";
 
 import {

@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-// import ClaimableNFT from "./ClaimableNFT";
-// import { Connection } from "@metaplex/js";
-// import { Metadata } from "@metaplex-foundation/mpl-token-metadata";
-// import { Connection } from "@solana/web3.js";
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
 import {claimReward} from "../contexts/transactions"
