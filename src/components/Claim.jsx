@@ -70,7 +70,8 @@ function Claim() {
                     if (nft.account.data.parsed.info.tokenAmount.amount == "1" && nft.account.data.parsed.info.tokenAmount.decimals == 0){
 
                         let metaAccount = await PublicKey.findProgramAddress([Buffer.from('metadata'), Metadata.PROGRAM_ID.toBytes(), new PublicKey(nft.account.data.parsed.info.mint).toBytes()], Metadata.PROGRAM_ID);
-                        if(connection.getAccountInfo(metaAccount[0]) != null){
+                        let x = await connection.getAccountInfo(metaAccount[0]);
+                        if(x != null){
                             let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
 
                             if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.includes("DBHB")){
