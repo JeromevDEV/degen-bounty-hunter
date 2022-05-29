@@ -11,7 +11,6 @@ import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { Connection, PublicKey } from "@solana/web3.js";
 const Metadata = require("@metaplex-foundation/mpl-token-metadata");
 
-
 function Claim() {
   const wallet = useWallet();
   const {publicKey} = useWallet();
@@ -22,7 +21,6 @@ function Claim() {
   const API_KEY = "nxhv0sPzGRpNAkM";
   const API_SECRET = "BwQZsaoHmXGOGt3";
   const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
-  const MINT_AUTHORITY = "756ypHgKk3gfonCJ68Sp91enMRXsyK4yQwwQkF3EUwkb";
 
   const search = (nameKey, myArray) => {
     for (var i = 0; i < myArray.length; i++) {
@@ -79,7 +77,7 @@ function Claim() {
             let metaAccount = await PublicKey.findProgramAddress([Buffer.from('metadata'), Metadata.PROGRAM_ID.toBytes(), new PublicKey(nft.account.data.parsed.info.mint).toBytes()], Metadata.PROGRAM_ID);
 
             let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
-            console.log(metadata.data.symbol)
+
             if (metadata.updateAuthority === UPDATE_AUTHORITY /*&& metadata.data.symbol.includes("DBHB")*/){
 
               let res = await axios.get(metadata.data.uri);
@@ -109,6 +107,12 @@ function Claim() {
   return (
     <section>
       <Container fluid className="claim-section">
+        <h1 className="team-heading">
+          You did a good job hunter... now it's time to retire{" "}
+          <span className="roadmap" role="img" aria-labelledby="roadmap">
+              💰
+            </span>
+        </h1>
         <Container>
           {loading ? (
             <div>
@@ -143,14 +147,6 @@ function Claim() {
           ) : (
             <h1>User not connected</h1>
           )}
-          {/* <h1 className="team-heading">
-            You did a good job hunter... now it's time to retire{" "}
-            <span className="roadmap" role="img" aria-labelledby="roadmap">
-              💰
-            </span>
-          </h1> */}
-          {/*<ClaimableNFT/>*/}
-          {/* <p>WIP</p> */}
         </Container>
       </Container>
     </section>
