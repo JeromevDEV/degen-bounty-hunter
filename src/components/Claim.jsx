@@ -79,8 +79,9 @@ function Claim() {
             let metaAccount = await PublicKey.findProgramAddress([Buffer.from('metadata'), Metadata.PROGRAM_ID.toBytes(), new PublicKey(nft.account.data.parsed.info.mint).toBytes()], Metadata.PROGRAM_ID);
 
             let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
+            console.log(metadata)
 
-            if (metadata.updateAuthority === UPDATE_AUTHORITY && metadata.mintAuthority === MINT_AUTHORITY){
+            if (metadata.updateAuthority === UPDATE_AUTHORITY /*&& metadata.mintAuthority === MINT_AUTHORITY*/){
 
               let res = await axios.get(metadata.data.uri);
 
