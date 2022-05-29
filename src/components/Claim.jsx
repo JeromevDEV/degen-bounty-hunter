@@ -121,6 +121,7 @@ function Claim() {
                                 <h3 className="team-heading">No NFTs found</h3>
                             )}
                             {NFTs.map((nft, key) => {
+                                {console.log(NFTs.length)}
                                 return (
                                     <div className="card" key={key}>
                                         <img
