@@ -46,7 +46,6 @@ function Claim() {
             if (publicKey) {
 
                 setLoading(true);
-
                 const connection = new Connection("https://api.mainnet-beta.solana.com","processed");
 
                 const accounts = await connection.getParsedProgramAccounts(
@@ -77,10 +76,10 @@ function Claim() {
 
                         let metaAccount = await PublicKey.findProgramAddress([Buffer.from('metadata'), Metadata.PROGRAM_ID.toBytes(), new PublicKey(nft.account.data.parsed.info.mint).toBytes()], Metadata.PROGRAM_ID);
 
-                        //let check = await connection.getAccountInfo(metaAccount[0])
-                        //if(check!= null){
+                        let check = await connection.getAccountInfo(metaAccount[0])
+                        if(check!= null){
                             let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
-                            //console.log(metadata)
+                            console.log(metadata)
 
                             if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.includes("DBHB")){
 
@@ -95,7 +94,7 @@ function Claim() {
                                 setNFTs(validNfts);
 
                             }
-                        //}
+                        }
                     }
                 });
 
