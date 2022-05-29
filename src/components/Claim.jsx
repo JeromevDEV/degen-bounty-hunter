@@ -73,7 +73,7 @@ function Claim() {
 
                         let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
 
-                        if (metadata.updateAuthority == UPDATE_AUTHORITY){
+                        if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.includes("DBHB")){
 
                             let res = await axios.get(metadata.data.uri);
 
@@ -125,7 +125,12 @@ function Claim() {
     return (
         <section>
             <Container fluid className="claim-section">
-                <Container>
+                <h1 className="team-heading">
+                    You did a good job hunter... now it's time to retire<span className="roadmap" role="img" aria-labelledby="roadmap">
+              💰
+            </span>
+                </h1>
+                <Container style={{marginTop:"20px"}}>
                     {loading ? (
                         <div>
                             <h1>Loading NFTs ...</h1>
@@ -140,7 +145,6 @@ function Claim() {
                                     <div className="card" key={nft.data.name}>
                                         <img
                                             src={nft.data.image}
-                                            //   src="https://static01.nyt.com/images/2021/03/12/arts/11nft-auction-cryptopunks-print/11nft-auction-cryptopunks-print-mobileMasterAt3x.jpg"
                                             alt={nft.data.name}
                                             width="200"
                                         />
@@ -158,14 +162,6 @@ function Claim() {
                     ) : (
                         <h1>User not connected</h1>
                     )}
-                    {/* <h1 className="team-heading">
-            You did a good job hunter... now it's time to retire{" "}
-            <span className="roadmap" role="img" aria-labelledby="roadmap">
-              💰
-            </span>
-          </h1> */}
-                    {/*<ClaimableNFT/>*/}
-                    {/* <p>WIP</p> */}
                 </Container>
             </Container>
         </section>
