@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from "react";
-import {Container} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 // import ClaimableNFT from "./ClaimableNFT";
 // import { Connection } from "@metaplex/js";
 // import { Metadata } from "@metaplex-foundation/mpl-token-metadata";
 // import { Connection } from "@solana/web3.js";
-import {useWallet} from "@solana/wallet-adapter-react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
 import {claimReward} from "../contexts/transactions"
-import {TOKEN_PROGRAM_ID} from "@solana/spl-token";
-import {Connection, PublicKey} from "@solana/web3.js";
-
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { Connection, PublicKey } from "@solana/web3.js";
 const Metadata = require("@metaplex-foundation/mpl-token-metadata");
+
 
 function Claim() {
     const wallet = useWallet();
@@ -18,7 +18,6 @@ function Claim() {
     const [arr, setArr] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8]);
     const [loading, setLoading] = useState(true);
     const [NFTs, setNFTs] = useState([]);
-    const [mint, setMints] = useState();
     const API_KEY = "nxhv0sPzGRpNAkM";
     const API_SECRET = "BwQZsaoHmXGOGt3";
     const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
@@ -34,7 +33,7 @@ function Claim() {
 
     const handleClaim = async (mint) => {
         try {
-            await claimReward(wallet, mint);
+            await claimReward(wallet,mint);
         } catch (error) {
             console.log(error);
         }
@@ -42,12 +41,10 @@ function Claim() {
 
     useEffect(() => {
         (async function () {
-
+            setLoading(true);
             if (publicKey) {
 
-                setLoading(true);
-
-                const connection = new Connection("https://api.mainnet-beta.solana.com", "processed");
+                const connection = new Connection("https://api.mainnet-beta.solana.com");
 
                 const accounts = await connection.getParsedProgramAccounts(
                     TOKEN_PROGRAM_ID, // new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
@@ -68,26 +65,19 @@ function Claim() {
 
                 let validNfts = [];
 
-                let validMints = [];
+                accounts.map(async (nft)=>{
 
-                accounts.map(async (nft) => {
-
-                    setLoading(true);
-                    if (nft.account.data.parsed.info.tokenAmount.amount == "1" && nft.account.data.parsed.info.tokenAmount.decimals == 0) {
+                    if (nft.account.data.parsed.info.tokenAmount.amount == "1" && nft.account.data.parsed.info.tokenAmount.decimals == 0){
 
                         let metaAccount = await PublicKey.findProgramAddress([Buffer.from('metadata'), Metadata.PROGRAM_ID.toBytes(), new PublicKey(nft.account.data.parsed.info.mint).toBytes()], Metadata.PROGRAM_ID);
 
-                        let metadata = await Metadata.Metadata.fromAccountAddress(connection, metaAccount[0]);
+                        let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
 
-                        if (metadata.updateAuthority === UPDATE_AUTHORITY /*&& metadata.data.symbol.includes("DBHB")*/) {
+                        if (metadata.updateAuthority == UPDATE_AUTHORITY){
 
                             let res = await axios.get(metadata.data.uri);
 
                             validNfts.push(res);
-
-                            validMints.push(nft.account.data.parsed.info.mint);
-
-                            setMints(validMints);
 
                             setNFTs(validNfts);
 
@@ -99,8 +89,35 @@ function Claim() {
                 });
 
 
-                setLoading(false);
 
+                // const HEADERS = {
+                //   APIKeyID: API_KEY,
+                //   APISecretKey: API_SECRET,
+                // };
+                // const PARAMS = {
+                //   public_key: publicKey.toBase58(),
+                //   network: "mainnet-beta",
+                // };
+
+                // console.log("gjg")
+
+                // let res = await axios.get(
+                //   "https://api.theblockchainapi.com/v1/solana/wallet/nfts",
+                //   {
+                //     headers: HEADERS,
+                //     params: PARAMS,
+                //   }
+                // );
+
+                // console.log(res)
+
+                // setNFTs(
+                //   res.data.nfts_metadata.filter((metadata) => {
+                //     return metadata.update_authority === UPDATE_AUTHORITY;
+                //   })
+                // );
+
+                setLoading(false);
             }
         })();
     }, [publicKey]);
@@ -108,13 +125,7 @@ function Claim() {
     return (
         <section>
             <Container fluid className="claim-section">
-                <h1 className="team-heading">
-                    You did a good job hunter... now it's time to retire{" "}
-                    <span className="roadmap" role="img" aria-labelledby="roadmap">
-              💰
-            </span>
-                </h1>
-                <Container style={{marginTop:"15px"}}>
+                <Container>
                     {loading ? (
                         <div>
                             <h1>Loading NFTs ...</h1>
@@ -124,10 +135,9 @@ function Claim() {
                             {NFTs.length === 0 && (
                                 <h1 className="team-heading">No NFTs found</h1>
                             )}
-                            {console.log(NFTs.length)}
-                            {NFTs.map((nft, key) => {
+                            {NFTs.map((nft) => {
                                 return (
-                                    <div className="card" key={key}>
+                                    <div className="card" key={nft.data.name}>
                                         <img
                                             src={nft.data.image}
                                             //   src="https://static01.nyt.com/images/2021/03/12/arts/11nft-auction-cryptopunks-print/11nft-auction-cryptopunks-print-mobileMasterAt3x.jpg"
@@ -136,12 +146,10 @@ function Claim() {
                                         />
                                         <h5>{nft.data.name}</h5>
                                         <h5>
-                                            Bounty: {search("Bounty", nft.data.attributes)}
+                                            Bounty: {search("Bounty",nft.data.attributes)}
                                         </h5>
                                         <div>
-                                            <button className="btn-primary"
-                                                    onClick={() => handleClaim(mint[key])}>Claim
-                                            </button>
+                                            <button className="btn-primary" onClick={() => handleClaim(nft.mint)}>Claim</button>
                                         </div>
                                     </div>
                                 );
@@ -150,6 +158,14 @@ function Claim() {
                     ) : (
                         <h1>User not connected</h1>
                     )}
+                    {/* <h1 className="team-heading">
+            You did a good job hunter... now it's time to retire{" "}
+            <span className="roadmap" role="img" aria-labelledby="roadmap">
+              💰
+            </span>
+          </h1> */}
+                    {/*<ClaimableNFT/>*/}
+                    {/* <p>WIP</p> */}
                 </Container>
             </Container>
         </section>
