@@ -70,19 +70,17 @@ function Claim() {
                     if (nft.account.data.parsed.info.tokenAmount.amount == "1" && nft.account.data.parsed.info.tokenAmount.decimals == 0){
 
                         let metaAccount = await PublicKey.findProgramAddress([Buffer.from('metadata'), Metadata.PROGRAM_ID.toBytes(), new PublicKey(nft.account.data.parsed.info.mint).toBytes()], Metadata.PROGRAM_ID);
-                        let x = await connection.getAccountInfo(metaAccount[0]);
-                        if(x != null){
-                            let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
 
-                            if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.includes("DBHB")){
+                        let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
 
-                                let res = await axios.get(metadata.data.uri);
+                        if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.includes("DBHB")){
 
-                                validNfts.push(res);
+                            let res = await axios.get(metadata.data.uri);
 
-                                setNFTs(validNfts);
+                            validNfts.push(res);
 
-                            }
+                            setNFTs(validNfts);
+
                         }
 
                     }
