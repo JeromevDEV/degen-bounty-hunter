@@ -24,7 +24,7 @@ export const claimReward = async (wallet,mintId)=>{
     console.log(wallet.publicKey.toBase58())
     console.log(mintId)
 
-    await axios.post("https://dbh-claim-reward.vercel.app/api/claimReward", {
+    await axios.post("https://degen-bounty-hunter-claim.vercel.app/api/claimReward", {
         wallet: wallet.publicKey.toBase58(),
         mintId,
     })
