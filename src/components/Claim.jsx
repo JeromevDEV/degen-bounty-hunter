@@ -80,7 +80,7 @@ function Claim() {
                         let check = await connection.getAccountInfo(metaAccount[0])
                         if(check!= null){
                             let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
-                            console.log(metadata)
+                            //console.log(metadata)
 
                             if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.includes("DBHB")){
 
@@ -121,7 +121,6 @@ function Claim() {
                             {NFTs.length === 0 && (
                                 <h1 className="team-heading">No NFTs found</h1>
                             )}
-                            {console.log(NFTs.length)}
                             {NFTs.map((nft,key) => {
                                 return (
                                     <div className="card" key={key}>
