@@ -43,7 +43,9 @@ function Claim() {
             if (publicKey) {
                 setLoading(true);
 
-                const connection = new Connection("https://api.mainnet-beta.solana.com", "processed");
+                //const connection = new Connection("https://api.mainnet-beta.solana.com", "processed");
+                const connection = new Connection("https://lively-wispy-glitter.solana-mainnet.quiknode.pro/09fcb80a5e6d9f40095050a1ca05c85d02f82370/", "processed");
+
 
                 const accounts = await connection.getParsedProgramAccounts(
                     TOKEN_PROGRAM_ID, // new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
