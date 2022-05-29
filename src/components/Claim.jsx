@@ -78,9 +78,9 @@ function Claim() {
                         let metaAccount = await PublicKey.findProgramAddress([Buffer.from('metadata'), Metadata.PROGRAM_ID.toBytes(), new PublicKey(nft.account.data.parsed.info.mint).toBytes()], Metadata.PROGRAM_ID);
 
                         let check = await connection.getAccountInfo(metaAccount[0])
-                        console.log("check: " + check);
                         if(check!= null){
                             let metadata = await Metadata.Metadata.fromAccountAddress(connection,metaAccount[0]);
+                            console.log(metadata)
 
                             if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.includes("DBHB")){
 
