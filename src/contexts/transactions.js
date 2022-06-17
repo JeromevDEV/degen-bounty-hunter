@@ -11,15 +11,15 @@ import {
     sendAndConfirmRawTransaction,
     Keypair,
 } from '@solana/web3.js';
-import { TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID} from "@solana/spl-token";
+import { TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import axios from 'axios';
 import { Metadata } from "@metaplex-foundation/mpl-token-metadata";
 import { useWallet } from '@solana/wallet-adapter-react';
 
 // const connection = new Connection("devnet");
-const solConnection = new web3.Connection(web3.clusterApiUrl("mainnet-beta"), "processed");
+const solConnection = new web3.Connection(web3.clusterApiUrl("devnet"), "processed");
 
-export const claimReward = async (wallet,mintId)=>{
+export const claimReward = async (wallet, mintId) => {
 
     console.log(wallet.publicKey.toBase58())
     console.log(mintId)
@@ -43,6 +43,45 @@ export const claimReward = async (wallet,mintId)=>{
         .catch(function (error) {
             console.log(error);
         });
+}
+
+export const submitDual = async (wallet, mintId) => {
+    let response = await axios.post("http://localhost:3001/api/submitDual", {
+        wallet: wallet.publicKey.toBase58(),
+        mintId,
+    });
+    console.log(response.data);
+    let { transactionBase64, info } = response.data;
+    let recoveredTransaction = Transaction.from(Buffer.from(transactionBase64, 'base64'));
+    console.log(recoveredTransaction);
+    let tx = await wallet.signTransaction(recoveredTransaction);
+    console.log(tx);
+    console.log("transaction init")
+    await sendAndConfirmRawTransaction(solConnection, tx.serialize());
+    await axios.post("http://localhost:3001/api/saveNftInfo", { info });
+    console.log("transaction confirmed");
+
+    console.log("txHash =", tx);
+}
+
+export const checkDualReward = async (wallet, mintId) => {
+    let response = await axios.post("http://localhost:3001/api/checkDualReward", {
+        wallet: wallet.publicKey.toBase58(),
+        mintId,
+    });
+    console.log(response.data);
+    let { transactionBase64 } = response.data;
+    let recoveredTransaction = Transaction.from(Buffer.from(transactionBase64, 'base64'));
+    console.log(recoveredTransaction);
+    let tx = await wallet.signTransaction(recoveredTransaction);
+    console.log(tx);
+    console.log("transaction init");
+    let info = { wallet: wallet.publicKey.toBase58(), mintId };
+    await sendAndConfirmRawTransaction(solConnection, tx.serialize());
+    await axios.post("http://localhost:3001/api/updateNftInfo", { info });
+    console.log("transaction confirmed");
+
+    console.log("txHash =", tx);
 }
 
 export const getAssociatedTokenAccount = async (ownerPubkey, mintPk) => {
