@@ -62,6 +62,10 @@ export const submitDuel = async (wallet, mintId) => {
     console.log("transaction confirmed");
 
     console.log("txHash =", tx);
+
+    //running duel if there are 2 nft left to be dueled
+    response = await axios.post("http://localhost:3001/api/duel");
+    console.log(response);
 }
 
 export const checkDuelReward = async (wallet, mintId) => {
