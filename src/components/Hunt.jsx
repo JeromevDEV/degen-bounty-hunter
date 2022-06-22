@@ -4,28 +4,30 @@ import step2 from "../Assets/step_2.png";
 import step3 from "../Assets/step_3.png";
 import rightplaceholder from "../Assets/hunt-right.png";
 
-import React, {useEffect, useState} from "react";
-import {Container} from "react-bootstrap";
-import {useWallet} from "@solana/wallet-adapter-react";
+import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
-import {claimReward} from "../contexts/transactions"
-import {TOKEN_PROGRAM_ID} from "@solana/spl-token";
-import {Connection, PublicKey} from "@solana/web3.js";
+import { claimReward,submitDuel } from "../contexts/transactions"
+import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { Connection, PublicKey } from "@solana/web3.js";
 
 const Metadata = require("@metaplex-foundation/mpl-token-metadata");
 
 function Hunt() {
-    const wallet = useWallet();
+    let wallet = useWallet();
 
-    const {publicKey} = useWallet();
+    const { publicKey } = useWallet();
     const [loading, setLoading] = useState(false);
     const [NFTs, setNFTs] = useState([]);
     const [mint, setMints] = useState();
-    const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
+    const UPDATE_AUTHORITY = "5mfkNCR8Fo5p3DLHYBW6knuArGEgj8Ui2Lm4qnWEWUFh";
+    // const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
 
     const todo = async (mint) => {
         try {
-            console.log(mint)
+            console.log(mint);
+            await submitDuel(wallet,mint);
             // await claimReward(wallet, mint);
         } catch (error) {
             console.log(error);
@@ -34,7 +36,7 @@ function Hunt() {
 
     const search = (nameKey, myArray) => {
         for (var i = 0; i < myArray.length; i++) {
-            if (myArray[i].trait_type === nameKey) {
+            if (myArray[i].trait_type === nameKey||myArray[i].trait_type===nameKey.toUpperCase()) {
                 return myArray[i].value;
             }
         }
@@ -45,7 +47,9 @@ function Hunt() {
         (async function () {
             if (publicKey) {
                 setLoading(true);
-                const connection = new Connection("https://lively-wispy-glitter.solana-mainnet.quiknode.pro/09fcb80a5e6d9f40095050a1ca05c85d02f82370/", "processed");
+                const connection = new Connection("https://api.devnet.solana.com/", "processed");
+                // const connection = new Connection("https://lively-wispy-glitter.solana-mainnet.quiknode.pro/09fcb80a5e6d9f40095050a1ca05c85d02f82370/", "processed");
+
 
 
                 const accounts = await connection.getParsedProgramAccounts(
@@ -79,11 +83,7 @@ function Hunt() {
                         if (x != null) {
                             let metadata = await Metadata.Metadata.fromAccountAddress(connection, metaAccount[0]);
 
-                            if (metadata.updateAuthority == UPDATE_AUTHORITY &&  metadata.data.symbol.substring(0,1) === "D"
-                                &&  metadata.data.symbol.substring(1,2) === "B"
-                                &&  metadata.data.symbol.substring(2,3) === "H"
-                                &&  metadata.data.symbol.substring(3,4) !== "B") {
-
+                            if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.substring(0,7) === "DBHDUEL") {
                                 let res = await axios.get(metadata.data.uri);
                                 validNfts.push(res);
 
@@ -107,23 +107,23 @@ function Hunt() {
         <section>
             <Container fluid className="hunt-section" id="hunt">
                 <Container className="hunt-content">
-                    <h1 style={{paddingBottom: 25}} className="heading">
+                    <h1 style={{ paddingBottom: 25 }} className="heading">
                         Coming soon...
                     </h1>
-                    <img src={hunt} alt="hunt pic" className="img-fluid" style={{maxWidth: '75%'}}/>
+                    <img src={hunt} alt="hunt pic" className="img-fluid" style={{ maxWidth: '75%' }} />
                 </Container>
                 <Container>
                     <div id="step-container">
                         <div>
-                            <img src={step1} style={{width: "50%", height: "50%", marginBottom:"10px", marginTop:"15px"}}/>
+                            <img src={step1} style={{ width: "50%", height: "50%", marginBottom: "10px", marginTop: "15px" }} />
                             <p>Select the NFT you want to send in a duel</p>
                         </div>
                         <div>
-                            <img src={step2} style={{width: "50%", height: "50%", marginBottom:"10px", marginTop:"15px"}}/>
+                            <img src={step2} style={{ width: "50%", height: "50%", marginBottom: "10px", marginTop: "15px" }} />
                             <p>Wait until the duel is done</p>
                         </div>
                         <div>
-                            <img src={step3} style={{width: "50%", height: "50%", marginBottom:"10px", marginTop:"15px"}}/>
+                            <img src={step3} style={{ width: "50%", height: "50%", marginBottom: "10px", marginTop: "15px" }} />
                             <p>Collect your rewards</p>
                         </div>
                     </div>
@@ -153,7 +153,7 @@ function Hunt() {
                                             </h5>
                                             <div>
                                                 <button className="btn-primary"
-                                                        onClick={() => todo(mint[key])}>Hunt !
+                                                    onClick={() => todo(mint[key])}>Hunt !
                                                 </button>
                                             </div>
                                         </div>
@@ -161,7 +161,7 @@ function Hunt() {
                                 })}
                             </div>
                             <div>
-                                <img className="hunt-right-img" src={rightplaceholder}/>
+                                <img className="hunt-right-img" src={rightplaceholder} />
                             </div>
                         </div>
                     ) : (
@@ -193,7 +193,7 @@ function Hunt() {
                                             </h5>
                                             <div>
                                                 <button className="btn-primary"
-                                                        onClick={() => todo(mint[key])}>Hunt !
+                                                    onClick={() => todo(mint[key])}>Hunt !
                                                 </button>
                                             </div>
                                         </div>

@@ -87,22 +87,6 @@ export const checkDuelReward = async (wallet, mintId) => {
 
     console.log("txHash =", tx);
 }
-export const duel = async () => {
-    let response = await axios.post("http://localhost:3001/api/dual");
-    console.log(response.data);
-    // let { transactionBase64 } = response.data;
-    // let recoveredTransaction = Transaction.from(Buffer.from(transactionBase64, 'base64'));
-    // console.log(recoveredTransaction);
-    // let tx = await wallet.signTransaction(recoveredTransaction);
-    // console.log(tx);
-    // console.log("transaction init");
-    // let info = { wallet: wallet.publicKey.toBase58(), mintId };
-    // await sendAndConfirmRawTransaction(solConnection, tx.serialize());
-    // await axios.post("http://localhost:3001/api/updateNftInfo", { info });
-    // console.log("transaction confirmed");
-
-    // console.log("txHash =", tx);
-}
 
 export const getAssociatedTokenAccount = async (ownerPubkey, mintPk) => {
     let associatedTokenAccountPubkey = (await PublicKey.findProgramAddress(
