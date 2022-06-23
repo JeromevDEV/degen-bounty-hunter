@@ -79,7 +79,7 @@ function Claim() {
                             console.log("nft classic")
                             let metadata = await Metadata.Metadata.fromAccountAddress(connection, metaAccount[0]);
 
-                            if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.includes("DBHB")) {
+                            if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.includes("DBHDUEL")) {
                                 console.log("nft bounty")
 
                                 let res = await axios.get(metadata.data.uri);
@@ -134,7 +134,7 @@ function Claim() {
                                         />
                                         <h5>{nft.data.name}</h5>
                                         <h5>
-                                            Bounty: {search("Bounty", nft.data.attributes)}
+                                            Bounty: {search("BOUNTY", nft.data.attributes)}
                                         </h5>
                                         <div>
                                             <button className="btn-primary"
