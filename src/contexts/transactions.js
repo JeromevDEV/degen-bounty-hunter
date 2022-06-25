@@ -1,20 +1,8 @@
 import * as anchor from '@project-serum/anchor';
 import { web3 } from "@project-serum/anchor";
-import {
-    PublicKey,
-    SystemProgram,
-    SYSVAR_RENT_PUBKEY,
-    ParsedAccountData,
-    AccountInfo,
-    Connection,
-    Transaction,
-    sendAndConfirmRawTransaction,
-    Keypair,
-} from '@solana/web3.js';
+import { PublicKey, Transaction, sendAndConfirmRawTransaction, } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import axios from 'axios';
-import { Metadata } from "@metaplex-foundation/mpl-token-metadata";
-import { useWallet } from '@solana/wallet-adapter-react';
 
 // const connection = new Connection("devnet");
 const solConnection = new web3.Connection(web3.clusterApiUrl("devnet"), "processed");
@@ -89,8 +77,8 @@ export const checkDuelReward = async (wallet, mintId) => {
 }
 
 export const getSubmittedNfts = async (publicKey) => {
-    let response=await axios.post("http://localhost:3001/api/getSubmittedNfts",{
-        wallet:publicKey.toBase58(),
+    let response = await axios.post("http://localhost:3001/api/getSubmittedNfts", {
+        wallet: publicKey.toBase58(),
     });
     return response.data.info;
 }
