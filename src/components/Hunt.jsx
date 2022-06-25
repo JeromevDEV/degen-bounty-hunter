@@ -201,8 +201,8 @@ function Hunt() {
                                 )}
                                 {submittedInfo.map((info, key) => {
                                     return (
-                                        <div>
-                                            <div className="card-hunt" key={key}>
+                                        <div key={key}>
+                                            <div className="card-hunt">
                                                 <img
                                                     src={info.image}
                                                     alt={info.name}
@@ -219,12 +219,12 @@ function Hunt() {
                                                 </div>
                                             </div>
                                             {info.isDuelComplete ? (
-                                                <div id="summary-container" key={key}>
+                                                <div id="summary-container">
                                                     <h1>Summary</h1>
                                                     <p>Result: {info.isWinner ? ("won") : ("lost")}</p>
                                                     <p>New bounty: {info.newBounty}</p>
                                                     <p>Your winning chances were: {info.winningChance}%</p>
-                                                    <p>Your opponent:{info.opponentMint} </p>
+                                                    <p>Your opponent: {info.opponentMint} </p>
                                                 </div>
                                             ) : (
                                                 <div id="summary-container">
