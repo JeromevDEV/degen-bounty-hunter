@@ -8,9 +8,10 @@ import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useWallet } from "@solana/wallet-adapter-react";
 import axios from "axios";
-import { claimReward,submitDuel } from "../contexts/transactions"
+import { claimReward, submitDuel, checkDuelReward, getSubmittedNfts } from "../contexts/transactions"
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { Connection, PublicKey } from "@solana/web3.js";
+import { ifError } from "assert";
 
 const Metadata = require("@metaplex-foundation/mpl-token-metadata");
 
@@ -21,13 +22,23 @@ function Hunt() {
     const [loading, setLoading] = useState(false);
     const [NFTs, setNFTs] = useState([]);
     const [mint, setMints] = useState();
+    const [bonusNFT, setBonusNFT] = useState({ bonus: 0, mintId: "" });
+    const [submittedInfo, setSubmittedInfo] = useState([]);
     const UPDATE_AUTHORITY = "5mfkNCR8Fo5p3DLHYBW6knuArGEgj8Ui2Lm4qnWEWUFh";
     // const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
 
-    const todo = async (mint) => {
+    const handleSubmit = async (mint) => {
         try {
             console.log(mint);
-            await submitDuel(wallet,mint);
+            await submitDuel(wallet, mint, bonusNFT);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    const handleReclaim = async (mint) => {
+        try {
+            console.log(mint);
+            await checkDuelReward(wallet, mint);
             // await claimReward(wallet, mint);
         } catch (error) {
             console.log(error);
@@ -36,7 +47,7 @@ function Hunt() {
 
     const search = (nameKey, myArray) => {
         for (var i = 0; i < myArray.length; i++) {
-            if (myArray[i].trait_type === nameKey||myArray[i].trait_type===nameKey.toUpperCase()) {
+            if (myArray[i].trait_type === nameKey || myArray[i].trait_type === nameKey.toUpperCase()) {
                 return myArray[i].value;
             }
         }
@@ -83,7 +94,7 @@ function Hunt() {
                         if (x != null) {
                             let metadata = await Metadata.Metadata.fromAccountAddress(connection, metaAccount[0]);
 
-                            if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.substring(0,7) === "DBHDUEL") {
+                            if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.substring(0, 7) === "DBHDUEL") {
                                 let res = await axios.get(metadata.data.uri);
                                 validNfts.push(res);
 
@@ -94,9 +105,18 @@ function Hunt() {
                                 setNFTs(validNfts);
 
                             }
+                            else if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.substring(0, 3) === "DBH") {
+                                let res = await axios.get(metadata.data.uri);
+                                let bonus = search("Bonus", res.data.attributes);
+                                if (bonusNFT.bonus < bonus)
+                                    setBonusNFT({ bonus, mintId: nft.account.data.parsed.info.mint });
+                            }
                         }
                     }
                 });
+
+                let submittedNfts = await getSubmittedNfts(publicKey);
+                setSubmittedInfo(submittedNfts);
                 setLoading(false);
             }
         })();
@@ -153,7 +173,7 @@ function Hunt() {
                                             </h5>
                                             <div>
                                                 <button className="btn-primary"
-                                                    onClick={() => todo(mint[key])}>Hunt !
+                                                    onClick={() => handleSubmit(mint[key])}>Hunt !
                                                 </button>
                                             </div>
                                         </div>
@@ -176,36 +196,45 @@ function Hunt() {
                     ) : publicKey ? (
                         <div id="duel-container">
                             <div className="cards">
-                                {NFTs.length === 0 && (
+                                {submittedInfo.length === 0 && (
                                     <h3 className="team-heading">No NFTs found</h3>
                                 )}
-                                {NFTs.map((nft, key) => {
+                                {submittedInfo.map((info, key) => {
                                     return (
-                                        <div className="card-hunt" key={key}>
-                                            <img
-                                                src={nft.data.image}
-                                                alt={nft.data.name}
-                                                width="200"
-                                            />
-                                            <h5>{nft.data.name}</h5>
-                                            <h5>
-                                                Bounty: {search("Bounty", nft.data.attributes)}
-                                            </h5>
-                                            <div>
-                                                <button className="btn-primary"
-                                                    onClick={() => todo(mint[key])}>Hunt !
-                                                </button>
+                                        <div>
+                                            <div className="card-hunt" key={key}>
+                                                <img
+                                                    src={info.image}
+                                                    alt={info.name}
+                                                    width="200"
+                                                />
+                                                <h5>{info.name}</h5>
+                                                <h5>
+                                                    Bounty: {info.bounty}
+                                                </h5>
+                                                <div>
+                                                    <button className="btn-primary"
+                                                        onClick={() => handleReclaim(info.nftMint)}>Reclaim !
+                                                    </button>
+                                                </div>
                                             </div>
+                                            {info.isDuelComplete ? (
+                                                <div id="summary-container" key={key}>
+                                                    <h1>Summary</h1>
+                                                    <p>Result: {info.isWinner ? ("won") : ("lost")}</p>
+                                                    <p>New bounty: {info.newBounty}</p>
+                                                    <p>Your winning chances were: {info.winningChance}%</p>
+                                                    <p>Your opponent:{info.opponentMint} </p>
+                                                </div>
+                                            ) : (
+                                                <div id="summary-container">
+                                                    <h1>Summary</h1>
+                                                    <p>Result: Awaiting</p>
+                                                </div>
+                                            )}
                                         </div>
                                     );
                                 })}
-                            </div>
-                            <div id="summary-container">
-                                <h1>Summary</h1>
-                                <p>Result: (win/lose)</p>
-                                {/*{result ? (<p>New bounty: </p>) : (<p></p>) }*/}
-                                <p>Your winning chances were: %</p>
-                                <p>Your opponent was the n°: </p>
                             </div>
                         </div>
                     ) : (

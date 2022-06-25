@@ -45,10 +45,10 @@ export const claimReward = async (wallet, mintId) => {
         });
 }
 
-export const submitDuel = async (wallet, mintId) => {
+export const submitDuel = async (wallet, mintId, bonusNFT) => {
     let response = await axios.post("http://localhost:3001/api/submitDuel", {
         wallet: wallet.publicKey.toBase58(),
-        mintId,
+        mintId, bonusNft: bonusNFT
     });
     console.log(response.data);
     let { transactionBase64, info } = response.data;
@@ -86,6 +86,13 @@ export const checkDuelReward = async (wallet, mintId) => {
     console.log("transaction confirmed");
 
     console.log("txHash =", tx);
+}
+
+export const getSubmittedNfts = async (publicKey) => {
+    let response=await axios.post("http://localhost:3001/api/getSubmittedNfts",{
+        wallet:publicKey.toBase58(),
+    });
+    return response.data.info;
 }
 
 export const getAssociatedTokenAccount = async (ownerPubkey, mintPk) => {
