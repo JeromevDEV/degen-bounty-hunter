@@ -8,7 +8,7 @@ function Hunt() {
             <Container fluid className="hunt-section" id="hunt">
                 <Container className="hunt-content">
                     <h1 style={{paddingBottom: 25}} className="heading">
-                        Coming soon...
+                        Launching on 1st July
                     </h1>
                     <img src={hunt} alt="hunt pic" className="img-fluid" style={{maxWidth : '75%'}}/>
                 </Container>
