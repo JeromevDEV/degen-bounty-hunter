@@ -61,7 +61,7 @@ function Hunt() {
                 const connection = new Connection("https://api.devnet.solana.com/", "processed");
                 // const connection = new Connection("https://lively-wispy-glitter.solana-mainnet.quiknode.pro/09fcb80a5e6d9f40095050a1ca05c85d02f82370/", "processed");
 
-
+                // console.log()
 
                 const accounts = await connection.getParsedProgramAccounts(
                     TOKEN_PROGRAM_ID,
@@ -228,7 +228,7 @@ function Hunt() {
                                                 </div>
                                             ) : (
                                                 <div id="summary-container">
-                                                    <h1>Summary</h1>
+                                                    <h2>Summary</h2>
                                                     <p>Result: Awaiting</p>
                                                 </div>
                                             )}
