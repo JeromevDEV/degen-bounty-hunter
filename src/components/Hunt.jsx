@@ -38,6 +38,7 @@ function Hunt() {
             upadateLoad(false)  
         } catch (error) {
             console.log(error);
+            upadateLoad(false)  
         }
     }
     const handleReclaim = async (mint) => {
@@ -49,6 +50,7 @@ function Hunt() {
             upadateLoad(false)
         } catch (error) {
             console.log(error);
+            upadateLoad(false)
         }
     }
 
