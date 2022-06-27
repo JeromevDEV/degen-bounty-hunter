@@ -3,6 +3,7 @@ import step1 from "../Assets/step_1.png";
 import step2 from "../Assets/step_2.png";
 import step3 from "../Assets/step_3.png";
 import rightplaceholder from "../Assets/hunt-right.png";
+import Pre from './Pre'
 
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
@@ -26,20 +27,26 @@ function Hunt() {
     const [submittedInfo, setSubmittedInfo] = useState([]);
     const UPDATE_AUTHORITY = "5mfkNCR8Fo5p3DLHYBW6knuArGEgj8Ui2Lm4qnWEWUFh";
     // const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
+    const [load, upadateLoad] = useState(false);
+
 
     const handleSubmit = async (mint) => {
         try {
+            upadateLoad(true)
             console.log(mint);
             await submitDuel(wallet, mint, bonusNFT);
+            upadateLoad(false)  
         } catch (error) {
             console.log(error);
         }
     }
     const handleReclaim = async (mint) => {
         try {
+            upadateLoad(true)
             console.log(mint);
             await checkDuelReward(wallet, mint);
             // await claimReward(wallet, mint);
+            upadateLoad(false)
         } catch (error) {
             console.log(error);
         }
@@ -125,6 +132,8 @@ function Hunt() {
 
     return (
         <section>
+            <Pre load={load} />
+
             <Container fluid className="hunt-section" id="hunt">
                 <Container className="hunt-content">
                     <h1 style={{ paddingBottom: 25 }} className="heading">
