@@ -46,7 +46,6 @@ function Hunt() {
             upadateLoad(true)
             console.log(mint);
             await checkDuelReward(wallet, mint);
-            // await claimReward(wallet, mint);
             upadateLoad(false)
         } catch (error) {
             console.log(error);
@@ -69,8 +68,6 @@ function Hunt() {
                 setLoading(true);
                 const connection = new Connection("https://api.devnet.solana.com/", "processed");
                 // const connection = new Connection("https://lively-wispy-glitter.solana-mainnet.quiknode.pro/09fcb80a5e6d9f40095050a1ca05c85d02f82370/", "processed");
-
-                // console.log()
 
                 const accounts = await connection.getParsedProgramAccounts(
                     TOKEN_PROGRAM_ID,
@@ -138,9 +135,6 @@ function Hunt() {
 
             <Container fluid className="hunt-section" id="hunt">
                 <Container className="hunt-content">
-                    <h1 style={{ paddingBottom: 25 }} className="heading">
-                        Coming soon...
-                    </h1>
                     <img src={hunt} alt="hunt pic" className="img-fluid" style={{ maxWidth: '75%' }} />
                 </Container>
                 <Container>
@@ -206,7 +200,7 @@ function Hunt() {
                         </div>
                     ) : publicKey ? (
                         <div id="duel-container" className="reclaim">
-                            <div className="cards">
+                            <div className="cards2">
                                 {submittedInfo.length === 0 && (
                                     <h3 className="team-heading">No NFTs found</h3>
                                 )}
@@ -221,26 +215,28 @@ function Hunt() {
                                                 />
                                                 <h5>{info.name}</h5>
                                                 <h5>
-                                                    Bounty: {info.bounty}
+                                                    Old Bounty: {info.bounty}
                                                 </h5>
-                                                <div>
-                                                    <button className="btn-primary"
-                                                        onClick={() => handleReclaim(info.nftMint)}>Reclaim !
-                                                    </button>
-                                                </div>
+                                                {info.isDuelComplete ? (
+                                                    <div>
+                                                        <button className="btn-primary"
+                                                            onClick={() => handleReclaim(info.nftMint)}>Reclaim !
+                                                        </button>
+                                                    </div>
+                                                ) : (<div />)}
                                             </div>
                                             {info.isDuelComplete ? (
                                                 <div id="summary-container">
-                                                    <h1>Summary</h1>
-                                                    <p>Result: {info.isWinner ? ("won") : ("lost")}</p>
-                                                    <p>New bounty: {info.newBounty}</p>
+                                                    {/* <h1>Summary</h1> */}
+                                                    <h3>Result: {info.isWinner ? ("Won") : ("Lost")}</h3>
+                                                    <h4>New Bounty: {info.newBounty}</h4>
                                                     <p>Your winning chances were: {info.winningChance}%</p>
                                                     <p>Your opponent: {info.opponentMint} </p>
                                                 </div>
                                             ) : (
                                                 <div id="summary-container">
-                                                    <h2>Summary</h2>
-                                                    <p>Result: Awaiting</p>
+                                                    {/* <h2>Summary</h2> */}
+                                                    <h3>Result: Awaiting</h3>
                                                 </div>
                                             )}
                                         </div>
