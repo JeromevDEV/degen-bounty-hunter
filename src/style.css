@@ -882,3 +882,35 @@ html {
 .card h5 {
   padding: 0px 10px;
 }
+
+
+/* -------------------------------------------------------------- */
+@media (max-width:570px) {
+  #step-container{
+    display: grid;
+    justify-content: center;
+  }
+  #duel-container{
+    display: grid;
+  }
+  #duel-container .cards{
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .hunt-right-img{
+    margin-left: 0;
+  }
+  .reclaim{
+    display: flex !important;
+  }
+  #summary-container{
+    width: 100%;
+    margin-left: 0;
+  }
+  .reclaim-wrap{
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* -------------------------------------------------------------- */

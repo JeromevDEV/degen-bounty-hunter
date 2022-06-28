@@ -159,7 +159,7 @@ function Hunt() {
                         </div>
                     </div>
                 </Container>
-                <Container>
+                <Container >
                     {loading ? (
                         <div>
                             <h3>Looking for Degen Bounty Hunter ...</h3>
@@ -199,20 +199,20 @@ function Hunt() {
                         <p></p>
                     )}
                 </Container>
-                <Container>
+                <Container >
                     {loading ? (
                         <div>
                             <h3>Looking for Degen Bounty Hunter ...</h3>
                         </div>
                     ) : publicKey ? (
-                        <div id="duel-container">
+                        <div id="duel-container" className="reclaim">
                             <div className="cards">
                                 {submittedInfo.length === 0 && (
                                     <h3 className="team-heading">No NFTs found</h3>
                                 )}
                                 {submittedInfo.map((info, key) => {
                                     return (
-                                        <div key={key}>
+                                        <div key={key} className="reclaim-wrap">
                                             <div className="card-hunt">
                                                 <img
                                                     src={info.image}
