@@ -224,7 +224,7 @@ html {
 
 .hunt-section {
   position: relative;
-  z-index: -1;
+  z-index: 1;
   /* background-image: var(--image-gradient), url(Assets/home-bg.jpg); */
   background-position: top center;
   background-repeat: no-repeat;
@@ -238,6 +238,99 @@ html {
   text-align: center;
 }
 
+#step-container {
+  margin-top: 20px;
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+  border: solid #FF355E;
+  border-radius: 25px;
+}
+#step-container  > div {
+  width: 300px;
+  height: 300px;
+}
+#step-container > div > p {
+  color: white;
+}
+
+#duel-container {
+  margin-top: 20px;
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+  border: solid #FF355E;
+  border-radius: 25px;
+}
+#duel-container  > div {
+  width: 100%;
+  height: fit-content;
+}
+
+#duel-container > div > p {
+  color: white;
+}
+
+.cards-hunt {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+  border-color: yellow;
+  width: 250px;
+  float: left;
+}
+
+.card-hunt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 25px;
+  background-color: rgba(83, 35, 108, 0.637);
+  color: white;
+  border-color: yellow;
+  height: 250px;
+  width: 250px;
+  float: left;
+}
+.card-hunt img {
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  width: 60%;
+  height: 60%;
+  margin: 0px auto 5px;
+  border-radius: 10px;
+}
+
+.hunt-right-img {
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  width: 93%;
+  height: 93%;
+  border-radius: 25px;
+  margin-left: 15px;
+}
+
+#summary-container{
+  color: white;
+  text-align: left;
+  height: 100%;
+  margin-left: 15px;
+  font-size: 20px;
+  float: left;
+  width: calc(100% - 300px);
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#summary-container h2{
+  text-align: center;
+}
+
 /* --------- */
 /* Roadmap section */
 /* --------- */
@@ -247,6 +340,7 @@ html {
   animation-iteration-count: infinite; /* Never stop waving :) */
   transform-origin: 70% 70%; /* Pivot around the bottom-left palm */
   display: inline-block;
+  padding-bottom:60px;
 }
 
 @keyframes roadmap-animation {
@@ -629,6 +723,8 @@ html {
 .footer {
   background-color: rgb(10, 4, 22);
   bottom: 0 !important;
+  left:0!important;
+  right:0!important;
   padding-top: 10px !important;
   padding-bottom: 8px !important;
   /*position: fixed;*/
@@ -674,7 +770,7 @@ html {
 .claim-section {
   position: relative !important;
   padding-top: 150px !important;
-  padding-bottom: 30px !important;
+  padding-bottom: 60px !important;
   color: white !important;
   height: 95vh; /* TODO ADAPT */
 }
@@ -775,6 +871,15 @@ html {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 20px;
   align-items: stretch;
+  flex-direction: column;
+}
+
+.cards2 {
+  display: flex;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 40px;
+  align-items: stretch;
+  flex-direction: column;
 }
 
 .card img {
@@ -788,3 +893,40 @@ html {
 .card h5 {
   padding: 0px 10px;
 }
+
+
+/* -------------------------------------------------------------- */
+@media (max-width:570px) {
+  #step-container{
+    display: grid;
+    justify-content: center;
+  }
+  #duel-container{
+    display: grid;
+  }
+  #duel-container .cards2{
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .hunt-right-img{
+    margin-left: 0;
+  }
+  .reclaim{
+    display: flex !important;
+  }
+  #summary-container{
+    width: 100%;
+    margin-left: 0;
+  }
+  .reclaim-wrap{
+    display: flex;
+    flex-direction: column;
+  }
+  .cards{
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+  }
+}
+/* -------------------------------------------------------------- */
