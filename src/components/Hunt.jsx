@@ -13,6 +13,8 @@ import { claimReward, submitDuel, checkDuelReward, getSubmittedNfts } from "../c
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { Connection, PublicKey } from "@solana/web3.js";
 import { ifError } from "assert";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Metadata = require("@metaplex-foundation/mpl-token-metadata");
 
@@ -32,24 +34,41 @@ function Hunt() {
 
     const handleSubmit = async (mint) => {
         try {
-            upadateLoad(true)
-            console.log(mint);
-            await submitDuel(wallet, mint, bonusNFT);
-            upadateLoad(false)  
+            await toast.promise(
+                submitDuel(wallet,mint,bonusNFT),
+                {
+                  pending: 'Submitting NFT in progress...',
+                  success: 'Transaction successfull',
+                  error: 'Transaction rejected'
+                },{
+                    position: "top-center",
+                    theme: "dark"
+                }
+            )
+            window.location.reload();
         } catch (error) {
             console.log(error);
-            upadateLoad(false)  
+            window.location.reload();
         }
     }
+
     const handleReclaim = async (mint) => {
         try {
-            upadateLoad(true)
-            console.log(mint);
-            await checkDuelReward(wallet, mint);
-            upadateLoad(false)
+            await toast.promise(
+                checkDuelReward(wallet, mint),
+                {
+                    pending: 'Reclaiming NFT in progress...',
+                    success: 'Transaction successfull',
+                    error: 'Transaction rejected'
+                },{
+                    position: "top-center",
+                    theme: "dark"
+                }
+            )
+            window.location.reload();
         } catch (error) {
             console.log(error);
-            upadateLoad(false)
+            window.location.reload();
         }
     }
 
@@ -217,13 +236,11 @@ function Hunt() {
                                                 <h5>
                                                     Old Bounty: {info.bounty}
                                                 </h5>
-                                                {info.isDuelComplete ? (
-                                                    <div>
-                                                        <button className="btn-primary"
-                                                            onClick={() => handleReclaim(info.nftMint)}>Reclaim !
-                                                        </button>
-                                                    </div>
-                                                ) : (<div />)}
+                                                <div>
+                                                    <button className="btn-primary"
+                                                        onClick={() => handleReclaim(info.nftMint)}>Reclaim !
+                                                    </button>
+                                                </div>
                                             </div>
                                             {info.isDuelComplete ? (
                                                 <div id="summary-container">
@@ -232,6 +249,9 @@ function Hunt() {
                                                     <h4>New Bounty: {info.newBounty}</h4>
                                                     <p>Your winning chances were: {info.winningChance}%</p>
                                                     <p>Your opponent: {info.opponentMint} </p>
+                                                    {info.discordId ? (
+                                                        <p>Discord ID: {info.discordId}</p>
+                                                    ) : (<p />)}
                                                 </div>
                                             ) : (
                                                 <div id="summary-container">
@@ -249,6 +269,7 @@ function Hunt() {
                     )}
                 </Container>
             </Container>
+            <ToastContainer />
         </section>
     );
 }
