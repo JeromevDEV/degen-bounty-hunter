@@ -138,8 +138,8 @@ function Hunt() {
                     }
                 });
 
-                let submittedNfts = await getSubmittedNfts(publicKey);
-                setSubmittedInfo(submittedNfts);
+              //  let submittedNfts = await getSubmittedNfts(publicKey);
+              //  setSubmittedInfo(submittedNfts);
                 setLoading(false);
             }
         })();
