@@ -5,7 +5,7 @@ import { TOKEN_PROGRAM_ID, ASSOCIATED_TOKEN_PROGRAM_ID } from "@solana/spl-token
 import axios from 'axios';
 
 // const connection = new Connection("devnet");
-const solConnection = new web3.Connection(web3.clusterApiUrl("devnet"), "processed");
+const solConnection = new web3.Connection(web3.clusterApiUrl("mainnet-beta"), "processed");
 
 export const claimReward = async (wallet, mintId) => {
 
@@ -34,7 +34,7 @@ export const claimReward = async (wallet, mintId) => {
 }
 
 export const submitDuel = async (wallet, mintId, bonusNFT) => {
-    let response = await axios.post("http://localhost:3001/api/submitDuel", {
+    let response = await axios.post("https://degen-bounty-hunter-claim.vercel.app/api/submitDuel", {
         wallet: wallet.publicKey.toBase58(),
         mintId, bonusNft: bonusNFT
     });
@@ -46,18 +46,18 @@ export const submitDuel = async (wallet, mintId, bonusNFT) => {
     console.log(tx);
     console.log("transaction init")
     await sendAndConfirmRawTransaction(solConnection, tx.serialize());
-    await axios.post("http://localhost:3001/api/saveNftInfo", { info });
+    await axios.post("https://degen-bounty-hunter-claim.vercel.app/api/saveNftInfo", { info });
     console.log("transaction confirmed");
 
     console.log("txHash =", tx);
 
     //running duel if there are 2 nft left to be dueled
-    response = await axios.post("http://localhost:3001/api/duel");
+    response = await axios.post("https://degen-bounty-hunter-claim.vercel.app/api/duel");
     console.log(response);
 }
 
 export const checkDuelReward = async (wallet, mintId) => {
-    let response = await axios.post("http://localhost:3001/api/checkDuelReward", {
+    let response = await axios.post("https://degen-bounty-hunter-claim.vercel.app/api/checkDuelReward", {
         wallet: wallet.publicKey.toBase58(),
         mintId,
     });
@@ -70,14 +70,14 @@ export const checkDuelReward = async (wallet, mintId) => {
     console.log("transaction init");
     let info = { wallet: wallet.publicKey.toBase58(), mintId };
     await sendAndConfirmRawTransaction(solConnection, tx.serialize());
-    await axios.post("http://localhost:3001/api/updateNftInfo", { info });
+    await axios.post("https://degen-bounty-hunter-claim.vercel.app/api/updateNftInfo", { info });
     console.log("transaction confirmed");
 
     console.log("txHash =", tx);
 }
 
 export const getSubmittedNfts = async (publicKey) => {
-    let response = await axios.post("http://localhost:3001/api/getSubmittedNfts", {
+    let response = await axios.post("https://degen-bounty-hunter-claim.vercel.app/api/getSubmittedNfts", {
         wallet: publicKey.toBase58(),
     });
     return response.data.info;

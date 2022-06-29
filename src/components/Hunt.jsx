@@ -27,9 +27,8 @@ function Hunt() {
     const [mint, setMints] = useState();
     const [bonusNFT, setBonusNFT] = useState({ bonus: 0, mintId: "" });
     const [submittedInfo, setSubmittedInfo] = useState([]);
-    const UPDATE_AUTHORITY = "5mfkNCR8Fo5p3DLHYBW6knuArGEgj8Ui2Lm4qnWEWUFh";
-    // const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
     const [load, upadateLoad] = useState(false);
+    const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
 
 
     const handleSubmit = async (mint) => {
@@ -37,7 +36,7 @@ function Hunt() {
             await toast.promise(
                 submitDuel(wallet,mint,bonusNFT),
                 {
-                  pending: 'Submitting NFT and search for duel in progress...',
+                  pending: 'Submitting NFT and on the way to duel...',
                   success: 'Transaction successfull',
                   error: 'Transaction rejected'
                 },{
@@ -85,8 +84,7 @@ function Hunt() {
         (async function () {
             if (publicKey) {
                 setLoading(true);
-                const connection = new Connection("https://api.devnet.solana.com/", "processed");
-                // const connection = new Connection("https://lively-wispy-glitter.solana-mainnet.quiknode.pro/09fcb80a5e6d9f40095050a1ca05c85d02f82370/", "processed");
+                const connection = new Connection("https://lively-wispy-glitter.solana-mainnet.quiknode.pro/09fcb80a5e6d9f40095050a1ca05c85d02f82370/", "processed");
 
                 const accounts = await connection.getParsedProgramAccounts(
                     TOKEN_PROGRAM_ID,
