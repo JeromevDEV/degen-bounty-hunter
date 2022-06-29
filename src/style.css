@@ -279,6 +279,8 @@ html {
   grid-gap: 20px;
   align-items: stretch;
   border-color: yellow;
+  width: 250px;
+  float: left;
 }
 
 .card-hunt {
@@ -291,6 +293,8 @@ html {
   color: white;
   border-color: yellow;
   height: 250px;
+  width: 250px;
+  float: left;
 }
 .card-hunt img {
   box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
@@ -314,9 +318,16 @@ html {
   height: 100%;
   margin-left: 15px;
   font-size: 20px;
+  float: left;
+  width: calc(100% - 300px);
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-#summary-container h1{
+#summary-container h2{
   text-align: center;
 }
 
@@ -860,6 +871,15 @@ html {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 20px;
   align-items: stretch;
+  flex-direction: column;
+}
+
+.cards2 {
+  display: flex;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 40px;
+  align-items: stretch;
+  flex-direction: column;
 }
 
 .card img {
@@ -873,3 +893,40 @@ html {
 .card h5 {
   padding: 0px 10px;
 }
+
+
+/* -------------------------------------------------------------- */
+@media (max-width:570px) {
+  #step-container{
+    display: grid;
+    justify-content: center;
+  }
+  #duel-container{
+    display: grid;
+  }
+  #duel-container .cards2{
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .hunt-right-img{
+    margin-left: 0;
+  }
+  .reclaim{
+    display: flex !important;
+  }
+  #summary-container{
+    width: 100%;
+    margin-left: 0;
+  }
+  .reclaim-wrap{
+    display: flex;
+    flex-direction: column;
+  }
+  .cards{
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+  }
+}
+/* -------------------------------------------------------------- */
