@@ -37,7 +37,7 @@ function Hunt() {
             await toast.promise(
                 submitDuel(wallet,mint,bonusNFT),
                 {
-                  pending: 'Submitting NFT in progress...',
+                  pending: 'Submitting NFT and search for duel in progress...',
                   success: 'Transaction successfull',
                   error: 'Transaction rejected'
                 },{
@@ -249,9 +249,6 @@ function Hunt() {
                                                     <h4>New Bounty: {info.newBounty}</h4>
                                                     <p>Your winning chances were: {info.winningChance}%</p>
                                                     <p>Your opponent: {info.opponentMint} </p>
-                                                    {info.discordId ? (
-                                                        <p>Discord ID: {info.discordId}</p>
-                                                    ) : (<p />)}
                                                 </div>
                                             ) : (
                                                 <div id="summary-container">
