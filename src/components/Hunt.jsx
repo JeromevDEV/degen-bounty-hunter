@@ -28,7 +28,7 @@ function Hunt() {
     const [bonusNFT, setBonusNFT] = useState({ bonus: 0, mintId: "" });
     const [submittedInfo, setSubmittedInfo] = useState([]);
     const [load, upadateLoad] = useState(false);
-    const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
+    const UPDATE_AUTHORITY = "8qW4iCqen1DVUzBYPA91tsNTm1uahyydWGwJDLJiV9tJ";
 
 
     const handleSubmit = async (mint) => {
