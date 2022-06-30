@@ -18,7 +18,7 @@ function Claim() {
     const [mint, setMints] = useState();
     const API_KEY = "nxhv0sPzGRpNAkM";
     const API_SECRET = "BwQZsaoHmXGOGt3";
-    const UPDATE_AUTHORITY = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
+    const UPDATE_AUTHORITY = "8qW4iCqen1DVUzBYPA91tsNTm1uahyydWGwJDLJiV9tJ";
 
     const search = (nameKey, myArray) => {
         for (var i = 0; i < myArray.length; i++) {
