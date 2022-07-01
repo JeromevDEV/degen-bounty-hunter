@@ -29,7 +29,7 @@ function Hunt() {
     const [submittedInfo, setSubmittedInfo] = useState([]);
     const [load, upadateLoad] = useState(false);
     const UPDATE_AUTHORITY = "8qW4iCqen1DVUzBYPA91tsNTm1uahyydWGwJDLJiV9tJ";
-
+    const UPDATE_AUTHORITY2 = "FSHP7g2kz3Mhy4oQ3w8JYksPR487hMgkcrjYAdjzwtaE";
 
     const handleSubmit = async (mint) => {
         try {
@@ -129,7 +129,7 @@ function Hunt() {
                                     setNFTs(validNfts);
                                 }
                             }
-                            else if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.substring(0, 3) === "DBH") {
+                            else if (metadata.updateAuthority == UPDATE_AUTHORITY2 && metadata.data.symbol.substring(0, 3) === "DBH") {
                                 let res = await axios.get(metadata.data.uri);
                                 let bonus = search("Bonus", res.data.attributes);
                                 if (bonusNFT.bonus < bonus)
