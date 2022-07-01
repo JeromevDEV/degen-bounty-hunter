@@ -34,15 +34,15 @@ function Hunt() {
     const handleSubmit = async (mint) => {
         try {
             await toast.promise(
-                submitDuel(wallet,mint,bonusNFT),
+                submitDuel(wallet, mint, bonusNFT),
                 {
-                  pending: 'Submitting NFT and on the way to duel...',
-                  success: 'Transaction successfull',
-                  error: 'Transaction rejected'
-                },{
-                    position: "top-center",
-                    theme: "dark"
-                }
+                    pending: 'Submitting NFT and on the way to duel...',
+                    success: 'Transaction successfull',
+                    error: 'Transaction rejected'
+                }, {
+                position: "top-center",
+                theme: "dark"
+            }
             )
             window.location.reload();
         } catch (error) {
@@ -59,10 +59,10 @@ function Hunt() {
                     pending: 'Reclaiming NFT in progress...',
                     success: 'Transaction successfull',
                     error: 'Transaction rejected'
-                },{
-                    position: "top-center",
-                    theme: "dark"
-                }
+                }, {
+                position: "top-center",
+                theme: "dark"
+            }
             )
             window.location.reload();
         } catch (error) {
@@ -119,14 +119,15 @@ function Hunt() {
 
                             if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.substring(0, 7) === "DBHDUEL") {
                                 let res = await axios.get(metadata.data.uri);
-                                validNfts.push(res);
+                                let gen = search("Gen", res.data.attributes);
 
-                                validMints.push(nft.account.data.parsed.info.mint);
+                                if (gen === "Duel") {
+                                    validNfts.push(res);
+                                    validMints.push(nft.account.data.parsed.info.mint);
 
-                                setMints(validMints);
-
-                                setNFTs(validNfts);
-
+                                    setMints(validMints);
+                                    setNFTs(validNfts);
+                                }
                             }
                             else if (metadata.updateAuthority == UPDATE_AUTHORITY && metadata.data.symbol.substring(0, 3) === "DBH") {
                                 let res = await axios.get(metadata.data.uri);
