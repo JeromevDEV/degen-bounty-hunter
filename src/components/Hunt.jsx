@@ -121,7 +121,7 @@ function Hunt() {
                                 let res = await axios.get(metadata.data.uri);
                                 let gen = search("Gen", res.data.attributes);
 
-                                if (gen === "Duel2") {
+                                if (gen === "Duel5") {
                                     validNfts.push(res);
                                     validMints.push(nft.account.data.parsed.info.mint);
 
